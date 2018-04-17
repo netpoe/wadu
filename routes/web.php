@@ -18,3 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+/**
+ * ADMIN ORDERS
+ */
+Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){
+    Route::get('/admin/orders/new', 'OrdersController@new')->name('admin.orders.new');
+});
