@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e1dfc13f737d5c146f3c7b21871f6d1b",
-    "content-hash": "74b545bf3ad701ef07e1d8533bc2936d",
+    "hash": "b311074bff3f5aa75893da1f945072d8",
+    "content-hash": "1523578ac7cee01ee054bdb95ade689f",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -209,6 +209,49 @@
                 "schedule"
             ],
             "time": "2018-04-06 15:51:55"
+        },
+        {
+            "name": "easyboxmodel/sections",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/EasyBoxModel/Sections.git",
+                "reference": "b2d7824811e38554512edacafb4e5a241a480ca8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/EasyBoxModel/Sections/zipball/b2d7824811e38554512edacafb4e5a241a480ca8",
+                "reference": "b2d7824811e38554512edacafb4e5a241a480ca8",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "6.*"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "EBM\\": "./src",
+                    "EBM\\Test\\": "./tests"
+                },
+                "classmap": [
+                    "./src",
+                    "./tests"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gus",
+                    "email": "yo@soygus.com"
+                }
+            ],
+            "support": {
+                "source": "https://github.com/EasyBoxModel/Sections/tree/master",
+                "issues": "https://github.com/EasyBoxModel/Sections/issues"
+            },
+            "time": "2017-09-11 16:52:09"
         },
         {
             "name": "egulias/email-validator",
@@ -4427,7 +4470,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "easyboxmodel/sections": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

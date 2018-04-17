@@ -8,7 +8,8 @@
         "php": "^7.1.3",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.6.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "easyboxmodel/sections": "dev-master"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
@@ -18,6 +19,12 @@
         "phpunit/phpunit": "^7.0",
         "xethron/migrations-generator": "^2.0"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "git@github.com:EasyBoxModel/Sections.git"
+        }
+    ],
     "autoload": {
         "classmap": [
             "database/seeds",

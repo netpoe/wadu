@@ -8,13 +8,15 @@
 
 <section class="section hero" id="admin-orders-new">
   <div class="container-sm">
-    <form action="POST">
+    <form method="POST" action="{{ $form->getOnPostActionString() }}">
       @csrf
 
-      <fieldset class="form-group">
-        <label for="whatsapp" class="sr-only">WA Number</label>
-        <input type="text" name="whatsapp" class="form-control form-control-lg" placeholder="whatsapp: 502 123 45 67">
+      @include('fields/text', ['field' => $form->getField('whatsapp')])
+
+      <fieldset class="form-group text-right">
+        <button type="submit" class="btn btn-primary btn-lg">Crear Orden</button>
       </fieldset>
+
     </form>
   </div>
 </section>
