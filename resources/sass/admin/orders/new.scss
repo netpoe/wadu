@@ -15,7 +15,7 @@
 @import "./node_modules/bootstrap/scss/card";
 @import "./node_modules/bootstrap/scss/utilities";
 
-// @import "bourbon";
+@import "./node_modules/bourbon/app/assets/stylesheets/bourbon";
 
 // EBM variables
 @import "./resources/sass/ebm-variables";
@@ -31,6 +31,7 @@
 @import "./resources/sass/ebm-overrides";
 @import "./resources/sass/ebm-global";
 @import "./node_modules/ebm/modules/ebm-header";
+@import "./node_modules/ebm/elements/ebm-alerts";
 
 #admin-orders-new {
   @include flex-column-center;

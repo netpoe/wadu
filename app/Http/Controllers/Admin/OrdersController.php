@@ -6,6 +6,11 @@ use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Form\Admin\NewOrderForm;
+use App\Util\WhatsAppNumberProcessor;
+use App\Model\{
+    User\UserAdapter as User,
+    User\UserContactAdapter as UserContact
+};
 
 class OrdersController extends Controller
 {
@@ -31,6 +36,23 @@ class OrdersController extends Controller
             return redirect('admin.orders.new')
                     ->withErrors($validator)
                     ->withInput();
+        }
+
+        $whatsappNumberProcessor = new WhatsAppNumberProcessor($request->input('whatsapp'));
+
+        $whatsappNumberProcessor
+            ->sanitizeNumber()
+            ->searchExistingNumbers();
+
+        $field = $form->getField('whatsapp');
+
+        if ($whatsappNumberProcessor->foundExistingNumbers()) {
+            $field->setModel($whatsappNumberProcessor->getUserContactModel());
+        } else {
+            $user = new User;
+            $userContact = new UserContact;
+            $userContact->user_id = $user->id;
+            $field->setModel($userContact);
         }
 
         $form->save();

@@ -18,6 +18,8 @@
       </fieldset>
 
     </form>
+
+    @include('components.section-error-alert')
   </div>
 </section>
 
