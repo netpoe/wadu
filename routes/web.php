@@ -29,6 +29,14 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){
 });
 
 /**
+ * ADMIN MENU
+ */
+Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){
+    Route::get('/admin/menu/edit', 'MenuController@edit')->name('admin.menu.edit');
+    Route::get('/admin/menu', 'MenuController@index')->name('admin.menu.index');
+});
+
+/**
  * FRONT MENU
  */
 Route::group(['middleware' => ['auth'], 'namespace' => 'Front'], function(){
