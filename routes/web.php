@@ -24,5 +24,13 @@ Route::get('/home', 'HomeController@index')->name('home');
  */
 Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){
     Route::post('/admin/orders/create', 'OrdersController@create')->name('admin.orders.create');
+    Route::get('/admin/orders/{order}/greet', 'OrdersController@greet')->name('admin.orders.greet');
     Route::get('/admin/orders/new', 'OrdersController@new')->name('admin.orders.new');
+});
+
+/**
+ * FRONT MENU
+ */
+Route::group(['middleware' => ['auth'], 'namespace' => 'Front'], function(){
+    Route::get('/negocio/{business}/menu', 'MenuController@index')->name('front.menu.index');
 });

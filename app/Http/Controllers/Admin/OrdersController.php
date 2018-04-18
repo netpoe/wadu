@@ -34,8 +34,7 @@ class OrdersController extends Controller
 
     public function create(
         NewOrderForm $form,
-        Request $request,
-        WhatsAppService $wa)
+        Request $request)
     {
         $form->setFields();
 
@@ -86,6 +85,13 @@ class OrdersController extends Controller
             'status_id' => OrderStatus::STARTED,
         ]);
 
-        return redirect($wa->greet($order));
+        return redirect()->route('admin.orders.greet', [$order]);
+    }
+
+    public function greet(
+        Order $order,
+        WhatsAppService $wa)
+    {
+        return view('admin.orders.greet', ['greet' => $wa->greet($order)]);
     }
 }

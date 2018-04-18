@@ -15,16 +15,19 @@ class WhatsAppService
 
     }
 
-    public function buildSendEndpoint(String $phone, String $message)
+    public function buildSendEndpoint(Array $params)
     {
-        $query = [
-            'phone' => $phone,
-            'message' => urlencode($message),
-        ];
+        if (array_key_exists('text', $params)) {
+            $params['text'] = str_replace(' ', '%20', $params['text']);
+            $params['text'] = str_replace('_NL', '%0A', $params['text']);
+        }
 
         $url = self::API_URL;
 
-        $query = http_build_query($query);
+        $query = '';
+        foreach ($params as $param => $value) {
+           $query .= "$param=$value&";
+        }
 
         return "$url/send?$query";
     }
@@ -33,9 +36,18 @@ class WhatsAppService
     {
         $phone = $order->user->contact->whatsapp;
 
-        $message = "Buen día, en este link puedes encontrar nuestro menú";
+        $business = $order->business;
+        $businessUrl = route('front.menu.index', [$business]);
 
-        return $this->buildSendEndpoint($phone, $message);
+        $message = "Buen día, en este link puedes encontrar nuestro menú:_NL_NL";
+        $message .= $businessUrl;
+
+        $params = [
+            'phone' => $phone,
+            'text' => $message,
+        ];
+
+        return $this->buildSendEndpoint($params);
     }
 }
 
