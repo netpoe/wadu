@@ -70,6 +70,7 @@ class RegisterController extends Controller
 
         $business = Business::create([
             'name' => $data['business_name'],
+            'slug' => $data['business_name'],
             'user_id' => $user->id,
         ]);
 

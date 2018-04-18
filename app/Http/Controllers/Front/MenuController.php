@@ -8,9 +8,12 @@ use App\Model\Business\BusinessAdapter as Business;
 
 class MenuController extends Controller
 {
-    public function index(Business $business)
+    public function index(String $businessSlug)
     {
-        print_r($business); exit;
+        $business = Business::where([
+            'slug' => $businessSlug
+        ])->first();
+
         return 'YEP';
     }
 }

@@ -32,5 +32,5 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){
  * FRONT MENU
  */
 Route::group(['middleware' => ['auth'], 'namespace' => 'Front'], function(){
-    Route::get('/negocio/{business}/menu', 'MenuController@index')->name('front.menu.index');
+    Route::get('/menu/{businessSlug}', 'MenuController@index')->name('front.menu.index');
 });

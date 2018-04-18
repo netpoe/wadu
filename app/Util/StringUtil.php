@@ -2,9 +2,16 @@
 
 namespace App\Util;
 
+use Cocur\Slugify\Slugify;
+
 class StringUtil
 {
     const RANDOM_STRING_CHARS = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+    static function makeSlug(String $value)
+    {
+        return (new Slugify)->slugify($value);
+    }
 
     public static function capitalize($value)
     {
