@@ -3,13 +3,22 @@
 namespace App\Http\Controllers\Admin;
 
 use Validator;
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Form\Admin\NewOrderForm;
-use App\Util\WhatsAppNumberProcessor;
+use App\Service\WhatsAppService;
+
+use App\Util\{
+    WhatsAppNumberProcessor,
+    StringUtil
+};
+
 use App\Model\{
     User\UserAdapter as User,
-    User\UserContactAdapter as UserContact
+    User\UserContactAdapter as UserContact,
+    Order\OrderAdapter as Order,
+    Order\OrderStatusAdapter as OrderStatus
 };
 
 class OrdersController extends Controller
@@ -23,7 +32,10 @@ class OrdersController extends Controller
         ]);
     }
 
-    public function create(NewOrderForm $form, Request $request)
+    public function create(
+        NewOrderForm $form,
+        Request $request,
+        WhatsAppService $wa)
     {
         $form->setFields();
 
@@ -46,21 +58,34 @@ class OrdersController extends Controller
 
         $field = $form->getField('whatsapp');
 
-        if ($whatsappNumberProcessor->foundExistingNumbers()) {
-            $field->setModel($whatsappNumberProcessor->getUserContactModel());
-        } else {
+
+        if (!$whatsappNumberProcessor->foundExistingNumbers()) {
             $user = new User;
+            $user->save();
+
             $userContact = new UserContact;
             $userContact->user_id = $user->id;
+
             $field->setModel($userContact);
+            $form->save();
+
+            if ($form->hasError()) {
+                return redirect()->back()->with('error', $form->getErrorMessage());
+            }
+        } else {
+            $userContact = $whatsappNumberProcessor->getUserContactModel();
+            $user = $userContact->user;
         }
 
-        $form->save();
+        // TODO, check is customer has existing order
 
-        if ($form->hasError()) {
-            return redirect()->back()->with('error', $form->getErrorMessage());
-        }
+        $order = Order::create([
+            'id' => StringUtil::getRandomString(),
+            'business_id' => Auth::user()->business->id,
+            'user_id' => $user->id,
+            'status_id' => OrderStatus::STARTED,
+        ]);
 
-        return redirect()->route('home');
+        return redirect($wa->greet($order));
     }
 }

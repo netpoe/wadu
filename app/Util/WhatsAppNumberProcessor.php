@@ -19,12 +19,18 @@ class WhatsAppNumberProcessor
 
     public function sanitizeNumber()
     {
+        $this->formattedNumber = StringUtil::cleanPhone($this->number);
 
         return $this;
     }
 
     public function searchExistingNumbers()
     {
+        $numbers = UserContact::where([
+            'whatsapp' => $this->formattedNumber,
+        ])->get();
+
+        $this->foundExistingNumbers = !$numbers->isEmpty();
 
         return $this;
     }
@@ -38,6 +44,6 @@ class WhatsAppNumberProcessor
     {
         return UserContact::where([
             'whatsapp' => $this->formattedNumber,
-        ]);
+        ])->first();
     }
 }
