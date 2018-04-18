@@ -2,7 +2,7 @@
 
 namespace App\Model\Product;
 
-use App\Product;
+use App\Model\Product;
 
 class ProductAdapter extends Product
 {}

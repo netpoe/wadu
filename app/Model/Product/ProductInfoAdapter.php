@@ -2,7 +2,7 @@
 
 namespace App\Model\Product;
 
-use App\ProductInfo;
+use App\Model\ProductInfo;
 
 class ProductInfoAdapter extends ProductInfo
 {}

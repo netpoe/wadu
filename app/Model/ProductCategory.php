@@ -8,5 +8,5 @@ class ProductCategory extends Model
 {
     protected $table = 'product_category';
 
-    protected $timestamps = false;
+    public $timestamps = false;
 }

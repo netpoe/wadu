@@ -2,7 +2,7 @@
 
 namespace App\Model\Product;
 
-use App\ProductPrice;
+use App\Model\ProductPrice;
 
 class ProductPriceAdapter extends ProductPrice
 {}

@@ -8,5 +8,11 @@ class ProductPrice extends Model
 {
     protected $table = 'product_price';
 
-    protected $timestamps = false;
+    public $timestamps = false;
+
+    protected $fillable = [
+        'product_id',
+        'value',
+        'discount'
+    ];
 }
