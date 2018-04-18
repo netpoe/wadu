@@ -37,6 +37,13 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){
 });
 
 /**
+ * ADMIN MENU
+ */
+Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){
+    Route::post('/admin/products/create', 'ProductsController@create')->name('admin.products.create');
+});
+
+/**
  * FRONT MENU
  */
 Route::group(['middleware' => ['auth'], 'namespace' => 'Front'], function(){

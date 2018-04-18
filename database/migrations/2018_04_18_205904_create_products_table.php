@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration {
 			$table->increments('id');
 			$table->integer('business_id')->unsigned()->nullable()->index('products_to_business');
 			$table->integer('product_category_id')->unsigned()->index('products_to_product_category');
+            $table->timestamps();
 		});
 	}
 
