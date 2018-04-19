@@ -80,15 +80,9 @@ class OrdersController extends Controller
         // TODO, check is customer has existing order
 
         $order = Order::create([
-            'id' => StringUtil::getRandomString(),
             'business_id' => Auth::user()->business->id,
             'user_id' => $user->id,
             'status_id' => OrderStatus::STARTED,
-        ]);
-
-        $businessOrder = BusinessOrder::create([
-            'business_id' => Auth::user()->business->id,
-            'order_id' => $order->id,
         ]);
 
         return redirect()->route('admin.orders.greet', [$order]);
