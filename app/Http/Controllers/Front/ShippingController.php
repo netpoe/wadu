@@ -33,6 +33,14 @@ class ShippingController extends Controller
 
         $form->save();
 
+        $addressId = $form->getField('user_id')->getModel()->id;
+
+        $order->where([
+            'id' => $order->id,
+        ])->update([
+            'address_id' => $addressId,
+        ]);
+
         return redirect()->route('front.orders.checkout', ['order' => $order]);
     }
 }
