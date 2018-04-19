@@ -37,6 +37,10 @@ class ProductsController extends Controller
 
     public function update(Product $product, Request $request)
     {
+        $product->update([
+            'product_category_id' => $request->input('product_category_id')
+        ]);
+
         $product->info->update([
             'name' => $request->input('name'),
             'description' => $request->input('description'),

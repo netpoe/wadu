@@ -20,35 +20,51 @@
 
         <form action="{{ route('admin.products.create') }}" method="POST" class="row no-gutters">
           @csrf
-          <fieldset class="form-group col-2">
+          <fieldset class="form-group col">
             <label for="name" class="sr-only">{{ __('Name') }}</label>
             <input type="text" name="name" class="form-control form-control-sm" placeholder="{{ __('Name') }}">
           </fieldset>
-          <fieldset class="form-group col-2">
+          <fieldset class="form-group col">
             <label for="price" class="sr-only">{{ __('Price') }}</label>
             <input type="text" name="price" class="form-control form-control-sm" placeholder="{{ __('Price') }}">
           </fieldset>
-          <fieldset class="form-group col-2">
+          <fieldset class="form-group col">
             <label for="discount" class="sr-only">{{ __('Discount') }}</label>
             <input type="text" name="discount" class="form-control form-control-sm" placeholder="{{ __('Discount') }}">
           </fieldset>
+          <fieldset class="form-group col">
+              <label for="product_category_id" class="sr-only">{{ __('Discount') }}</label>
+              <select name="product_category_id" id="" class="form-control form-control-sm">
+                @foreach ($productCategories as $category)
+                  <option value="{{ $category->id }}">{{ $category->value }}</option>
+                @endforeach
+              </select>
+            </fieldset>
           <input type="submit" class="d-none">
         </form>
 
         @foreach ($products as $product)
           <form action="{{ route('admin.products.update', ['id' => $product->id]) }}" method="POST" class="row no-gutters">
             @csrf
-            <fieldset class="form-group col-2">
+            <fieldset class="form-group col">
               <label for="name" class="sr-only">{{ __('Name') }}</label>
               <input value="{{ $product->info->name }}" type="text" name="name" class="form-control form-control-sm" placeholder="{{ __('Name') }}">
             </fieldset>
-            <fieldset class="form-group col-2">
+            <fieldset class="form-group col">
               <label for="price" class="sr-only">{{ __('Price') }}</label>
               <input value="{{ $product->price->value }}" type="text" name="price" class="form-control form-control-sm" placeholder="{{ __('Price') }}">
             </fieldset>
-            <fieldset class="form-group col-2">
+            <fieldset class="form-group col">
               <label for="discount" class="sr-only">{{ __('Discount') }}</label>
               <input value="{{ $product->price->discount }}" type="text" name="discount" class="form-control form-control-sm" placeholder="{{ __('Discount') }}">
+            </fieldset>
+            <fieldset class="form-group col">
+              <label for="product_category_id" class="sr-only">{{ __('Discount') }}</label>
+              <select name="product_category_id" id="" class="form-control form-control-sm">
+                @foreach ($productCategories as $category)
+                  <option value="{{ $category->id }}" @if($category->id === $product->product_category_id) selected="selected" @endif>{{ $category->value }}</option>
+                @endforeach
+              </select>
             </fieldset>
             <input type="submit" class="d-none">
           </form>
