@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Model\{
     User\UserAdapter as User,
+    User\UserAddressAdapter as UserAddress,
     Business\BusinessAdapter as Business
 };
 
@@ -32,5 +33,10 @@ class Order extends Model
     public function business()
     {
         return $this->belongsTo(Business::class, 'business_id', 'id');
+    }
+
+    public function address()
+    {
+        return $this->hasOne(UserAddress::class, 'id', 'address_id');
     }
 }

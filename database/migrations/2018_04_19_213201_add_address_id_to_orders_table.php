@@ -14,7 +14,7 @@ class AddAddressIdToOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->integer('address_id')->unsigned()->index('orders_to_user_address');
+            $table->integer('address_id')->unsigned()->after('status_id')->index('orders_to_user_address');
             $table->foreign('address_id', 'orders_to_user_address')->references('id')->on('user_address')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }

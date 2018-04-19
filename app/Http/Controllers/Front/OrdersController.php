@@ -32,7 +32,9 @@ class OrdersController extends Controller
 
     public function checkout(Order $order)
     {
-        return view('front.orders.checkout');
+        return view('front.orders.checkout', [
+            'order' => $order
+        ]);
     }
 
     public function add(Order $order, Product $product)
