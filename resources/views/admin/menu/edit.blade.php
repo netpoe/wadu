@@ -25,6 +25,10 @@
             <input type="text" name="name" class="form-control form-control-sm" placeholder="{{ __('Name') }}">
           </fieldset>
           <fieldset class="form-group col">
+              <label for="description" class="sr-only">{{ __('Description') }}</label>
+              <input type="text" name="description" class="form-control form-control-sm" placeholder="{{ __('Description') }}">
+            </fieldset>
+          <fieldset class="form-group col">
             <label for="price" class="sr-only">{{ __('Price') }}</label>
             <input type="text" name="price" class="form-control form-control-sm" placeholder="{{ __('Price') }}">
           </fieldset>
@@ -49,6 +53,10 @@
             <fieldset class="form-group col">
               <label for="name" class="sr-only">{{ __('Name') }}</label>
               <input value="{{ $product->info->name }}" type="text" name="name" class="form-control form-control-sm" placeholder="{{ __('Name') }}">
+            </fieldset>
+            <fieldset class="form-group col">
+              <label for="description" class="sr-only">{{ __('Description') }}</label>
+              <input value="{{ $product->info->description }}" type="text" name="description" class="form-control form-control-sm" placeholder="{{ __('Description') }}">
             </fieldset>
             <fieldset class="form-group col">
               <label for="price" class="sr-only">{{ __('Price') }}</label>
