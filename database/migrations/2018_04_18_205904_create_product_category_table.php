@@ -16,6 +16,7 @@ class CreateProductCategoryTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('value')->default('');
+            $table->integer('business_id')->unsigned();
 		});
 	}
 

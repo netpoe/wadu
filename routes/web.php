@@ -37,11 +37,18 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){
 });
 
 /**
- * ADMIN MENU
+ * ADMIN PRODUCTS
  */
 Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){
     Route::post('/admin/products/create', 'ProductsController@create')->name('admin.products.create');
     Route::post('/admin/products/{product}/update', 'ProductsController@update')->name('admin.products.update');
+});
+
+/**
+ * ADMIN PRODUCT CATEGORIES
+ */
+Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){
+    Route::post('/admin/product-categories/create', 'ProductCategoriesController@create')->name('admin.product-categories.create');
 });
 
 /**

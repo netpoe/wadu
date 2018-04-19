@@ -56,6 +56,17 @@
       </div>
       <div class="col-3">
         <h3>Categorías de producto</h3>
+        @foreach ($productCategories as $category)
+          <p>{{ $category->value }}</p>
+        @endforeach
+        <form action="{{ route('admin.product-categories.create') }}" method="POST">
+          @csrf
+          <fieldset class="form-group">
+            <label for="product_category" class="sr-only">{{ __('New product category') }}</label>
+            <input type="text" name="product_category" class="form-control form-control-sm" placeholder="{{ __('New product category') }}">
+          </fieldset>
+          <input type="submit" class="d-none">
+        </form>
       </div>
     </div>
 

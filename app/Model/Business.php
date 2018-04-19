@@ -7,6 +7,7 @@ use App\Util\StringUtil;
 
 use App\Model\{
     Product\ProductAdapter as Product,
+    Product\ProductCategoryAdapter as ProductCategory,
     Business\BusinessOrderAdapter as BusinessOrder
 };
 
@@ -23,6 +24,11 @@ class Business extends Model
     public function products()
     {
         return $this->hasMany(Product::class, 'business_id', 'id');
+    }
+
+    public function productCategories()
+    {
+        return $this->hasMany(ProductCategory::class, 'business_id', 'id');
     }
 
     public function orders()

@@ -15,8 +15,15 @@ class MenuController extends Controller
 
     public function edit()
     {
-        $products = Auth::user()->business->products->sortByDesc('id');
+        $business = Auth::user()->business;
 
-        return view('admin.menu.edit', ['products' => $products]);
+        $products = $business->products->sortByDesc('id');
+
+        $productCategories = $business->productCategories;
+
+        return view('admin.menu.edit', [
+            'products' => $products,
+            'productCategories' => $productCategories
+        ]);
     }
 }
