@@ -35,10 +35,7 @@ class MenuController extends Controller
 
         $productsByCategory = $product->byCategory($products)->sortKeys();
 
-        // print_r($productsByCategory->sortKeys()); exit;
-
         return view('front.menu.index', [
-            'products' => $products,
             'productsByCategory' => $productsByCategory,
             'business' => $business,
             'order' => $order,

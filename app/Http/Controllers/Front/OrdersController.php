@@ -12,6 +12,13 @@ use App\Model\{
 
 class OrdersController extends Controller
 {
+    public function shipping(Order $order)
+    {
+        return view('front.orders.shipping', [
+            'order' => $order,
+        ]);
+    }
+
     public function add(Order $order, Product $product)
     {
         $where = [

@@ -9,8 +9,15 @@
 <section class="section hero" id="front-menu-index">
   <div class="container">
 
-    <h1>Menú</h1>
-    <h2>{{ $business->name }}</h2>
+    <div class="row">
+      <div class="col-6">
+        <h1>Menú</h1>
+        <h2>{{ $business->name }}</h2>
+      </div>
+      <div class="col-6">
+        <a href="{{ route('front.orders.shipping', ['order' => $order->id]) }}" class="btn btn-primary">Continuar</a>
+      </div>
+    </div>
 
   </div>
 

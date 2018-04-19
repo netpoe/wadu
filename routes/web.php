@@ -65,4 +65,5 @@ Route::group(['namespace' => 'Front'], function(){
 Route::group(['namespace' => 'Front'], function(){
     Route::post('/orders/{order}/add/{product}', 'OrdersController@add')->name('front.orders.add');
     Route::post('/orders/{order}/subtract/{product}', 'OrdersController@subtract')->name('front.orders.subtract');
+    Route::get('/orders/{order}/shipping', 'OrdersController@shipping')->name('front.orders.shipping');
 });
