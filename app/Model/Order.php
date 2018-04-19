@@ -8,7 +8,8 @@ use App\Model\{
     User\UserAdapter as User,
     User\UserAddressAdapter as UserAddress,
     Business\BusinessAdapter as Business,
-    Order\OrderProductAdapter as OrderProduct
+    Order\OrderProductAdapter as OrderProduct,
+    Product\ProductAdapter as Product
 };
 
 class Order extends Model

@@ -16,11 +16,11 @@
       Referencias: {{ $order->address->references }}
     </p>
 
-    @foreach($order->products as $product)
+    @foreach($order->products as $orderProduct)
       <article class="product">
-        <h5>{{ $product->info->name }}</h5>
-        <p>{{ $product->info->description }}</p>
-        <small>{{ $product->price->value }}</small>
+        <h5>{{ $orderProduct->product->info->name }}</h5>
+        <p>{{ $orderProduct->product->info->description }}</p>
+        <small>{{ $orderProduct->product->price->value }}</small>
       </article>
     @endforeach
   </div>
