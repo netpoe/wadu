@@ -49,6 +49,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){
  */
 Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){
     Route::post('/admin/product-categories/create', 'ProductCategoriesController@create')->name('admin.product-categories.create');
+    Route::post('/admin/product-categories/{productCategory}/update', 'ProductCategoriesController@update')->name('admin.product-categories.update');
 });
 
 /**

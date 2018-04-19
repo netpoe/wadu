@@ -25,4 +25,17 @@ class ProductCategoriesController extends Controller
 
         return redirect()->route('admin.menu.edit');
     }
+
+    public function update(ProductCategory $productCategory, Request $request)
+    {
+        try {
+            $productCategory->update([
+                'value' => $request->input('product_category'),
+            ]);
+        } catch (\Exception $e) {
+
+        }
+
+        return redirect()->route('admin.menu.edit');
+    }
 }
