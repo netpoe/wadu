@@ -8,7 +8,9 @@ use App\Model\{
     Business\BusinessAdapter as Business,
     Order\OrderAdapter as Order,
     Order\OrderStatusAdapter as OrderStatus,
-    User\UserAdapter as User
+    User\UserAdapter as User,
+    Product\ProductCategoryAdapter as ProductCategory,
+    Product\ProductAdapter as Product
 };
 
 class MenuController extends Controller
@@ -16,7 +18,9 @@ class MenuController extends Controller
     public function index(
         String $businessSlug,
         User $user,
-        Request $request)
+        Request $request,
+        Product $product
+    )
     {
         $business = Business::where([
             'slug' => $businessSlug
@@ -29,8 +33,13 @@ class MenuController extends Controller
 
         $products = $business->products;
 
+        $productsByCategory = $product->byCategory($products)->sortKeys();
+
+        // print_r($productsByCategory->sortKeys()); exit;
+
         return view('front.menu.index', [
             'products' => $products,
+            'productsByCategory' => $productsByCategory,
             'business' => $business,
             'order' => $order,
         ]);

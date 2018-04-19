@@ -15,7 +15,9 @@
   </div>
 
   <div class="container-md">
-    @foreach ($products as $product)
+    @foreach ($productsByCategory as $name => $category)
+      <h3>@if(strpos($name, 'z_') !== false) {{ __('other') }} @else {{ $name }} @endif</h3>
+      @foreach ($category as $product)
 
         <article class="product">
           <div class="left">
@@ -43,7 +45,7 @@
             @endif
           </div>
         </article>
-
+      @endforeach
     @endforeach
   </div>
 
