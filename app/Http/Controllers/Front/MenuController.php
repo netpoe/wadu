@@ -17,7 +17,7 @@ class MenuController extends Controller
 {
     public function index(
         String $businessSlug,
-        User $user,
+        Order $order,
         Request $request,
         Product $product
     )
@@ -28,8 +28,6 @@ class MenuController extends Controller
 
         // TODO, si no se ha creado ninguna orden para este WhatsApp, hay error
         // TODO, si no hay $user param crear usuario nuevo vacío y orden nueva
-
-        $order = $business->getUserLatestOrder($user, OrderStatus::STARTED);
 
         $products = $business->products;
 

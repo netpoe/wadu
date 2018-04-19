@@ -7,14 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use App\Model\{
     User\UserAdapter as User,
     User\UserAddressAdapter as UserAddress,
-    Business\BusinessAdapter as Business
+    Business\BusinessAdapter as Business,
+    Order\OrderProductAdapter as OrderProduct
 };
 
 class Order extends Model
 {
     protected $table = 'orders';
-
-    public $incrementing = false;
 
     protected $fillable = [
         'id',
@@ -38,5 +37,10 @@ class Order extends Model
     public function address()
     {
         return $this->hasOne(UserAddress::class, 'id', 'address_id');
+    }
+
+    public function products()
+    {
+        return $this->hasMany(OrderProduct::class, 'order_id', 'id');
     }
 }

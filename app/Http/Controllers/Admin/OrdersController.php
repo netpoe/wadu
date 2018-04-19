@@ -18,8 +18,7 @@ use App\Model\{
     User\UserAdapter as User,
     User\UserContactAdapter as UserContact,
     Order\OrderAdapter as Order,
-    Order\OrderStatusAdapter as OrderStatus,
-    Business\BusinessOrderAdapter as BusinessOrder
+    Order\OrderStatusAdapter as OrderStatus
 };
 
 class OrdersController extends Controller

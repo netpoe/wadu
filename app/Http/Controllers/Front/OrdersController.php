@@ -9,6 +9,7 @@ use App\Form\Front\OrderShippingForm;
 use App\Model\{
     Product\ProductAdapter as Product,
     Order\OrderAdapter as Order,
+    Order\OrderProductAdapter as OrderProduct,
     Order\OrderStatusAdapter as OrderStatus,
     Address\AddressStateAdapter as AddressState
 };
@@ -40,14 +41,11 @@ class OrdersController extends Controller
     public function add(Order $order, Product $product)
     {
         $where = [
-            'id' => $order->id,
-            'user_id' => $order->user_id,
-            'business_id' => $order->business_id,
+            'order_id' => $order->id,
             'product_id' => $product->id,
-            'status_id' => OrderStatus::STARTED,
         ];
 
-        $orderProduct = Order::updateOrCreate($where);
+        $orderProduct = OrderProduct::updateOrCreate($where);
 
         $orderProduct->where($where)->update([
             'amount' => $orderProduct->amount + 1,
@@ -55,27 +53,24 @@ class OrdersController extends Controller
 
         return redirect()->route('front.menu.index', [
             'businessSlug' => $order->business->slug,
-            'user' => $orderProduct->user_id,
+            'order' => $order->id,
         ]);
     }
 
     public function subtract(Order $order, Product $product)
     {
         $where = [
-            'id' => $order->id,
-            'user_id' => $order->user_id,
-            'business_id' => $order->business_id,
+            'order_id' => $order->id,
             'product_id' => $product->id,
-            'status_id' => OrderStatus::STARTED,
         ];
 
-        $builder = Order::where($where);
+        $builder = OrderProduct::where($where);
 
         $orderProduct = $builder->first();
 
         $redirectParams = [
             'businessSlug' => $order->business->slug,
-            'user' => $orderProduct->user_id,
+            'order' => $order->id,
         ];
 
         if ($orderProduct->amount == 1) {

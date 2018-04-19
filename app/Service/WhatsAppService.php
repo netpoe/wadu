@@ -39,7 +39,7 @@ class WhatsAppService
         $business = $order->business;
         $businessUrl = route('front.menu.index', [
             'businessSlug' => $business->slug,
-            'user' => $order->user->id,
+            'order' => $order->id,
         ]);
 
         $message = "Buen día, en este link puedes encontrar nuestro menú:_NL_NL";

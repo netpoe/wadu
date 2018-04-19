@@ -39,14 +39,14 @@
             </form>
             <form action="{{ route('front.orders.subtract', ['product' => $product->id, 'order' => $order->id]) }}" method="POST">
               @csrf
-              @if ($order->fromProduct($product) && $order->fromProduct($product)->amount)
+              @if ($order->product($product) && $order->product($product)->amount)
                 <button type="submit" class="btn btn-sm btn-default"><i class="icon-circle-minus"></i></button>
               @else
                 <button type="submit" class="btn btn-sm btn-default disabled" disabled><i class="icon-circle-minus"></i></button>
               @endif
             </form>
-            @if ($order->fromProduct($product))
-              <span class="count">{{ $order->fromProduct($product)->amount }}</span>
+            @if ($order->product($product))
+              <span class="count">{{ $order->product($product)->amount }}</span>
             @else
               <span class="count">0</span>
             @endif

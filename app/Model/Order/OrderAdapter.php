@@ -7,8 +7,12 @@ use App\Model\Product\ProductAdapter as Product;
 
 class OrderAdapter extends Order
 {
-    public function fromProduct(Product $product)
+    public function product(Product $product)
     {
-        return $this->where('product_id', $product->id)->first();
+        if ($this->products->isEmpty()) {
+            return null;
+        }
+
+        return $this->products->where('product_id', $product->id)->first();
     }
 }
