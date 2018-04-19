@@ -47,6 +47,14 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){
 /**
  * FRONT MENU
  */
-Route::group(['middleware' => ['auth'], 'namespace' => 'Front'], function(){
-    Route::get('/menu/{businessSlug}', 'MenuController@index')->name('front.menu.index');
+Route::group(['namespace' => 'Front'], function(){
+    Route::get('/menu/{businessSlug}/{user?}', 'MenuController@index')->name('front.menu.index');
+});
+
+/**
+ * FRONT ORDERS
+ */
+Route::group(['namespace' => 'Front'], function(){
+    Route::post('/orders/{order}/add/{product}', 'OrdersController@add')->name('front.orders.add');
+    Route::post('/orders/{order}/subtract/{product}', 'OrdersController@subtract')->name('front.orders.subtract');
 });

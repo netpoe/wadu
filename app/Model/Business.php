@@ -4,7 +4,11 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Util\StringUtil;
-use App\Model\Product\ProductAdapter as Product;
+
+use App\Model\{
+    Product\ProductAdapter as Product,
+    Business\BusinessOrderAdapter as BusinessOrder
+};
 
 class Business extends Model
 {
@@ -19,6 +23,11 @@ class Business extends Model
     public function products()
     {
         return $this->hasMany(Product::class, 'business_id', 'id');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(BusinessOrder::class, 'business_id', 'id');
     }
 
     public function setSlugAttribute($value)

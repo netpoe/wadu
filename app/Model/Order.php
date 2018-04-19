@@ -20,6 +20,8 @@ class Order extends Model
         'business_id',
         'user_id',
         'status_id',
+        'product_id',
+        'amount'
     ];
 
     public function user()

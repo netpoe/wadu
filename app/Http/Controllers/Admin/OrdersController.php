@@ -18,7 +18,8 @@ use App\Model\{
     User\UserAdapter as User,
     User\UserContactAdapter as UserContact,
     Order\OrderAdapter as Order,
-    Order\OrderStatusAdapter as OrderStatus
+    Order\OrderStatusAdapter as OrderStatus,
+    Business\BusinessOrderAdapter as BusinessOrder
 };
 
 class OrdersController extends Controller
@@ -83,6 +84,11 @@ class OrdersController extends Controller
             'business_id' => Auth::user()->business->id,
             'user_id' => $user->id,
             'status_id' => OrderStatus::STARTED,
+        ]);
+
+        $businessOrder = BusinessOrder::create([
+            'business_id' => Auth::user()->business->id,
+            'order_id' => $order->id,
         ]);
 
         return redirect()->route('admin.orders.greet', [$order]);

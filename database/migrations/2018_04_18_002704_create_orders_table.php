@@ -14,11 +14,12 @@ class CreateOrdersTable extends Migration {
 	{
 		Schema::create('orders', function(Blueprint $table)
 		{
-			$table->string('id', 20)->default('')->primary();
+			$table->string('id', 20);
 			$table->integer('business_id')->unsigned()->index('orders_to_business');
 			$table->integer('user_id')->unsigned()->index('orders_to_users');
 			$table->integer('product_id')->unsigned()->nullable();
 			$table->integer('status_id')->unsigned()->nullable();
+            $table->integer('amount')->unsigned()->nullable()->default(0);
 			$table->timestamps();
 		});
 	}

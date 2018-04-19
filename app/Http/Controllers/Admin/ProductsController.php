@@ -22,7 +22,8 @@ class ProductsController extends Controller
 
         $productInfo = ProductInfo::create([
             'product_id' => $product->id,
-            'name' => $request->input('name')
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
         ]);
 
         $productPrice = ProductPrice::create([
@@ -38,6 +39,7 @@ class ProductsController extends Controller
     {
         $product->info->update([
             'name' => $request->input('name'),
+            'description' => $request->input('description'),
         ]);
 
         $product->price->update([
