@@ -7,7 +7,9 @@ use EBM\Field\Field;
 
 use App\Model\{
     User\UserAddressAdapter as UserAddress,
-    Order\OrderAdapter as Order
+    Order\OrderAdapter as Order,
+    Address\AddressCountryAdapter as AddressCountry,
+    Address\AddressStateAdapter as AddressState
 };
 
 class OrderShippingForm extends AbstractBaseForm
@@ -32,13 +34,18 @@ class OrderShippingForm extends AbstractBaseForm
 
     public function setFields()
     {
+        $userId = $this->order->user->id;
+
         $userAddress = new UserAddress;
-        $userAddress->user_id = $this->order->user->id;
+        $userAddress->user_id = $userId;
+
+        $addressCountry = new AddressCountry;
 
         $this->addField('user_id')
             ->setLabel('user_id')
             ->setModel($userAddress)
             ->setType(Field::TYPE_HIDDEN)
+            ->setValue($userId)
             ->required();
 
         $this->addField('country_id')
@@ -46,18 +53,14 @@ class OrderShippingForm extends AbstractBaseForm
             ->setModel($userAddress)
             ->setPlaceholder(__('Country'))
             ->setType(Field::TYPE_SELECT)
-            ->setOptions([
-                [
-                    'key' => 1,
-                    'value' => 'Guatemala'
-                ]
-            ])
+            ->setOptions($addressCountry->asSelectInputOptions('id', 'name'))
             ->required();
 
         $this->addField('state_id')
             ->setLabel(__('State'))
             ->setModel($userAddress)
             ->setPlaceholder(__('State'))
+            ->setOptions([['key' => null, 'value' => __('Select an option')]])
             ->setType(Field::TYPE_SELECT)
             ->required();
 

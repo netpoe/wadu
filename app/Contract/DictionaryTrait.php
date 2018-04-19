@@ -4,11 +4,29 @@ namespace App\Contract;
 
 trait DictionaryTrait
 {
-    public static function asSelectInputOptions(
-        Array $dictionary,
-        String $key = 'key',
-        String $value = 'value')
+    public function asSelectInputOptions(
+        String $keyName = 'key',
+        String $valueName = 'value')
     {
-        return '';
+        $data = $this::DATA;
+
+        if (!isset($data) || empty($data)) {
+            throw new \Exception('No constant DATA array was detected');
+        }
+
+        $options = [
+            [
+                'key' => null,
+                'value' => __('Select an option'),
+            ]
+        ];
+        array_reduce($data, function($acc, $current) use (&$options, $keyName, $valueName){
+            return $options[] = [
+                'key' => $current[$keyName],
+                'value' => $current[$valueName]
+            ];
+        });
+
+        return $options;
     }
 }

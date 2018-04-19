@@ -4,8 +4,7 @@ namespace App\Contract;
 
 interface DictionaryContract
 {
-    public static function asSelectInputOptions(
-        Array $dictionary,
-        String $key = 'key',
-        String $value = 'value');
+    public function asSelectInputOptions(
+        String $keyName = 'key',
+        String $valueName = 'value');
 }

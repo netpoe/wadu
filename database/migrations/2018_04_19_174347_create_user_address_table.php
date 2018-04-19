@@ -16,8 +16,8 @@ class CreateUserAddressTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('user_id')->unsigned()->index('user_address_to_users');
-			$table->integer('country_id')->unsigned()->index('user_address_to_address_countries');
-			$table->integer('state_id')->unsigned()->index('user_address_to_address_states');
+			$table->integer('country_id')->nullable()->unsigned()->index('user_address_to_address_countries');
+			$table->integer('state_id')->nullable()->unsigned()->index('user_address_to_address_states');
 			$table->string('city')->nullable()->default('');
 			$table->string('street')->default('');
 			$table->string('interior_number')->nullable();

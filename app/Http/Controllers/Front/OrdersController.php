@@ -9,7 +9,8 @@ use App\Form\Front\OrderShippingForm;
 use App\Model\{
     Product\ProductAdapter as Product,
     Order\OrderAdapter as Order,
-    Order\OrderStatusAdapter as OrderStatus
+    Order\OrderStatusAdapter as OrderStatus,
+    Address\AddressStateAdapter as AddressState
 };
 
 class OrdersController extends Controller
@@ -20,10 +21,18 @@ class OrdersController extends Controller
 
         $form->setFields();
 
+        $addressStates = new AddressState;
+
         return view('front.orders.shipping', [
             'order' => $order,
             'form' => $form,
+            'addressStates' => $addressStates->asJsonByCountryId(),
         ]);
+    }
+
+    public function checkout(Order $order)
+    {
+        return view('front.orders.checkout');
     }
 
     public function add(Order $order, Product $product)
