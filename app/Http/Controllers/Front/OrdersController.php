@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Front;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Form\Front\OrderShippingForm;
+
 use App\Model\{
     Product\ProductAdapter as Product,
     Order\OrderAdapter as Order,
@@ -14,8 +16,13 @@ class OrdersController extends Controller
 {
     public function shipping(Order $order)
     {
+        $form = new OrderShippingForm($order);
+
+        $form->setFields();
+
         return view('front.orders.shipping', [
             'order' => $order,
+            'form' => $form,
         ]);
     }
 

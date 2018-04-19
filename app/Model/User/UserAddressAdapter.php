@@ -2,7 +2,7 @@
 
 namespace App\Model\User;
 
-use App\UserAddress;
+use App\Model\UserAddress;
 
 class UserAddressAdapter extends UserAddress
 {}

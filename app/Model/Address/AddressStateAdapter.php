@@ -2,7 +2,7 @@
 
 namespace App\Model\Address;
 
-use App\AddressState;
+use App\Model\AddressState;
 
 class AddressStateAdapter extends AddressState
 {}

@@ -2,7 +2,7 @@
 
 namespace App\Model\Address;
 
-use App\AddressCountry;
+use App\Model\AddressCountry;
 
 class AddressCountryAdapter extends AddressCountry
 {}

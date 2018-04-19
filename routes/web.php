@@ -60,6 +60,13 @@ Route::group(['namespace' => 'Front'], function(){
 });
 
 /**
+ * FRONT SHIPPING
+ */
+Route::group(['namespace' => 'Front'], function(){
+    Route::post('/shipping/{order}', 'ShippingController@store')->name('front.shipping.store');
+});
+
+/**
  * FRONT ORDERS
  */
 Route::group(['namespace' => 'Front'], function(){
