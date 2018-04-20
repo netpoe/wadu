@@ -9,6 +9,8 @@ use App\Model\{
     User\UserAddressAdapter as UserAddress,
     Business\BusinessAdapter as Business,
     Order\OrderProductAdapter as OrderProduct,
+    Order\OrderStatusAdapter as OrderStatus,
+    Order\OrderPaymentTypeAdapter as OrderPaymentType,
     Product\ProductAdapter as Product
 };
 
@@ -43,5 +45,15 @@ class Order extends Model
     public function products()
     {
         return $this->hasMany(OrderProduct::class, 'order_id', 'id');
+    }
+
+    public function status()
+    {
+        return $this->hasOne(OrderStatus::class, 'id', 'status_id');
+    }
+
+    public function paymentType()
+    {
+        return $this->hasOne(OrderPaymentType::class, 'id', 'payment_type_id');
     }
 }

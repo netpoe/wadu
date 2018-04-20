@@ -13,5 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(AddressCountriesSeeder::class);
         $this->call(AddressStatesSeeder::class);
+        $this->call(OrderStatusSeeder::class);
+        $this->call(OrderPaymentTypeSeeder::class);
     }
 }

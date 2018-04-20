@@ -23,6 +23,15 @@ use App\Model\{
 
 class OrdersController extends Controller
 {
+    public function index() {
+
+        $orders = Auth::user()->business->orders;
+
+        return view('admin.orders.index', [
+            'orders' => $orders
+        ]);
+    }
+
     public function new(NewOrderForm $form) {
 
         $form->setFields();

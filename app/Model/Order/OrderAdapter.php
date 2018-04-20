@@ -2,8 +2,10 @@
 
 namespace App\Model\Order;
 
-use App\Model\Order;
-use App\Model\Product\ProductAdapter as Product;
+use App\Model\{
+    Order,
+    Product\ProductAdapter as Product
+};
 
 class OrderAdapter extends Order
 {

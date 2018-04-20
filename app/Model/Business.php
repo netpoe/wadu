@@ -8,7 +8,7 @@ use App\Util\StringUtil;
 use App\Model\{
     Product\ProductAdapter as Product,
     Product\ProductCategoryAdapter as ProductCategory,
-    Business\BusinessOrderAdapter as BusinessOrder
+    Order\OrderAdapter as Order
 };
 
 class Business extends Model
@@ -33,7 +33,7 @@ class Business extends Model
 
     public function orders()
     {
-        return $this->hasMany(BusinessOrder::class, 'business_id', 'id');
+        return $this->hasMany(Order::class, 'business_id', 'id');
     }
 
     public function setSlugAttribute($value)

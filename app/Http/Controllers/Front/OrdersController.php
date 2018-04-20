@@ -46,19 +46,17 @@ class OrdersController extends Controller
         // TODO Check if order has been paid
         // TODO make an state machine for order statuses
 
-
         $order->where([
             'id' => $order->id,
         ])->update([
-            'status_id' => $statusId
+            'status_id' => $statusId,
+            'payment_type_id' => $paymentTypeId,
         ]);
 
         // TODO notify business of a requested order
 
         return view('front.orders.pending', [
             'order' => $order,
-            'orderStatusDescription' => OrderStatus::DATA[$statusId]['description'],
-            'orderPaymentTypeDescription' => OrderPaymentType::DATA[$paymentTypeId]['description'],
         ]);
     }
 

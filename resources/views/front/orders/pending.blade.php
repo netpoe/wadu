@@ -16,8 +16,8 @@
       Referencias: {{ $order->address->references }}
     </p>
 
-    <p>Con este medio de pago: {{ __($orderPaymentTypeDescription) }}</p>
-    <p>Status: {{ __($orderStatusDescription) }}</p>
+    <p>Con este medio de pago: {{ __($order->paymentType->description) }}</p>
+    <p>Status: {{ __($order->status->description) }}</p>
 
     @foreach($order->products as $orderProduct)
       <article class="product">

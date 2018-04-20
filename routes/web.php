@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){
     Route::post('/admin/orders/create', 'OrdersController@create')->name('admin.orders.create');
     Route::get('/admin/orders/{order}/greet', 'OrdersController@greet')->name('admin.orders.greet');
     Route::get('/admin/orders/new', 'OrdersController@new')->name('admin.orders.new');
+    Route::get('/admin/orders/index', 'OrdersController@index')->name('admin.orders.index');
 });
 
 /**

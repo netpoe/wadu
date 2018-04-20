@@ -17,7 +17,7 @@ class CreateOrderProductTable extends Migration {
 			$table->increments('id');
 			$table->integer('order_id')->unsigned()->index('order_product_to_orders');
 			$table->integer('product_id')->unsigned()->index('order_product_to_products');
-			$table->integer('amount', 10)->unsigned()->nullable()->default(0);
+			$table->integer('amount')->length(10)->unsigned()->nullable()->default(0);
 		});
 	}
 
