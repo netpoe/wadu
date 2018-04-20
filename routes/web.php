@@ -74,6 +74,7 @@ Route::group(['namespace' => 'Front'], function(){
     Route::post('/orders/{order}/subtract/{product}', 'OrdersController@subtract')->name('front.orders.subtract');
     Route::get('/orders/{order}/shipping', 'OrdersController@shipping')->name('front.orders.shipping');
     Route::get('/orders/{order}/checkout', 'OrdersController@checkout')->name('front.orders.checkout');
+    Route::get('/orders/{order}/pending/{statusId}/pago/{paymentTypeId}', 'OrdersController@pending')->name('front.orders.pending');
 });
 
 /**

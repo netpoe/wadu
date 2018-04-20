@@ -8,13 +8,16 @@
 
 <section class="section hero" id="front-orders-checkout">
   <div class="container">
-    <h1>Checkout</h1>
+    <h1>Todo listo</h1>
     <p>Enviaremos tu pedido a:
       {{ $order->address->street }}, {{ $order->address->interior_number }}.<br>
       {{ $order->address->city }}, {{ $order->address->state->name }} - {{ $order->address->country->name }}<br>
       CP: {{ $order->address->zip_code }}<br>
       Referencias: {{ $order->address->references }}
     </p>
+
+    <p>Con este medio de pago: {{ __($orderPaymentTypeDescription) }}</p>
+    <p>Status: {{ __($orderStatusDescription) }}</p>
 
     @foreach($order->products as $orderProduct)
       <article class="product">
@@ -23,19 +26,6 @@
         <small>{{ $orderProduct->getPrice() }}</small>
       </article>
     @endforeach
-  </div>
-
-  <div class="container-sm">
-    <h2>Elige tu medio de pago</h2>
-    <a
-      href="{{ route('front.orders.pending', ['order' => $order->id, 'statusId' => $orderStatus::PENDING_CASH, 'paymentTypeId' => $orderPaymentType::CASH]) }}" class="btn btn-lg btn-dark btn-block">Efectivo</a>
-    <hr>
-    <button class="btn btn-lg btn-block btn-primary">Tarjeta</button>
-    <div id="card-details">
-      <form action="" method="POST">
-
-      </form>
-    </div>
   </div>
 
 </section>

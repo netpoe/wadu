@@ -11,6 +11,7 @@ use App\Model\{
     Order\OrderAdapter as Order,
     Order\OrderProductAdapter as OrderProduct,
     Order\OrderStatusAdapter as OrderStatus,
+    Order\OrderPaymentTypeAdapter as OrderPaymentType,
     Address\AddressStateAdapter as AddressState
 };
 
@@ -34,7 +35,30 @@ class OrdersController extends Controller
     public function checkout(Order $order)
     {
         return view('front.orders.checkout', [
-            'order' => $order
+            'order' => $order,
+            'orderStatus' => new OrderStatus,
+            'orderPaymentType' => new OrderPaymentType,
+        ]);
+    }
+
+    public function pending(Order $order, Int $statusId, Int $paymentTypeId)
+    {
+        // TODO Check if order has been paid
+        // TODO make an state machine for order statuses
+
+
+        $order->where([
+            'id' => $order->id,
+        ])->update([
+            'status_id' => $statusId
+        ]);
+
+        // TODO notify business of a requested order
+
+        return view('front.orders.pending', [
+            'order' => $order,
+            'orderStatusDescription' => OrderStatus::DATA[$statusId]['description'],
+            'orderPaymentTypeDescription' => OrderPaymentType::DATA[$paymentTypeId]['description'],
         ]);
     }
 

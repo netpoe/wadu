@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration {
 			$table->integer('business_id')->unsigned()->index('orders_to_business');
 			$table->integer('user_id')->unsigned()->index('orders_to_users');
 			$table->integer('status_id')->unsigned()->nullable();
+            $table->integer('payment_type_id')->unsigned()->nullable();
 			$table->timestamps();
 		});
 	}
