@@ -18,9 +18,9 @@
 
     @foreach($order->products as $orderProduct)
       <article class="product">
-        <h5>{{ $orderProduct->product->info->name }}</h5>
+        <h5>{{ $orderProduct->amount }} {{ $orderProduct->product->info->name }}</h5>
         <p>{{ $orderProduct->product->info->description }}</p>
-        <small>{{ $orderProduct->product->price->value }}</small>
+        <small>{{ $orderProduct->getPrice() }}</small>
       </article>
     @endforeach
   </div>
