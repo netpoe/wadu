@@ -22,12 +22,15 @@ class MenuController extends Controller
         Product $product
     )
     {
+
         $business = Business::where([
             'slug' => $businessSlug
         ])->firstOrFail();
 
-        // TODO, si no se ha creado ninguna orden para este WhatsApp, hay error
-        // TODO, si no hay $user param crear usuario nuevo vacío y orden nueva
+        if (!$order->inStatus(OrderStatus::STARTED)) {
+            // TODO, si no se ha creado ninguna orden para este WhatsApp, crear nueva order y mostrar menu
+            return view('front.orders.new', ['business' => $business->id]);
+        }
 
         $products = $business->products;
 

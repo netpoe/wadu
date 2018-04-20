@@ -19,6 +19,7 @@
             <th>{{ __('Status') }}</th>
             <th>{{ __('Payment type') }}</th>
             <th>{{ __('Address') }}</th>
+            <th>{{ __('Products') }}</th>
           </tr>
         </thead>
         <tbody>
@@ -29,6 +30,11 @@
               <td>{{ __($order->status->description) }}</td>
               <td>{{ __($order->paymentType->description) }}</td>
               <td>{{ __($order->address->asString()) }}</td>
+              <td>
+                @foreach($order->products as $orderProduct)
+                  <p>{{ $orderProduct->product->info->name }}</p>
+                @endforeach
+              </td>
             </tr>
           @endforeach
         </tbody>
