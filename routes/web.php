@@ -73,9 +73,10 @@ Route::group(['namespace' => 'Front'], function(){
 Route::group(['namespace' => 'Front'], function(){
     Route::post('/orders/{order}/add/{product}', 'OrdersController@add')->name('front.orders.add');
     Route::post('/orders/{order}/subtract/{product}', 'OrdersController@subtract')->name('front.orders.subtract');
+    Route::post('/orders/{order}/payment-type', 'OrdersController@paymentType')->name('front.orders.payment-type');
     Route::get('/orders/{order}/shipping', 'OrdersController@shipping')->name('front.orders.shipping');
     Route::get('/orders/{order}/checkout', 'OrdersController@checkout')->name('front.orders.checkout');
-    Route::get('/orders/{order}/pending/{statusId}/pago/{paymentTypeId}', 'OrdersController@pending')->name('front.orders.pending');
+    Route::get('/orders/{order}/pending', 'OrdersController@pending')->name('front.orders.pending');
     Route::get('/orders/{business}/new', 'OrdersController@new')->name('front.orders.new');
 });
 

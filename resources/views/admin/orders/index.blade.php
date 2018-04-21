@@ -18,6 +18,7 @@
             <th>{{ __('User') }}</th>
             <th>{{ __('Status') }}</th>
             <th>{{ __('Payment type') }}</th>
+            <th>{{ __('Payment status') }}</th>
             <th>{{ __('Address') }}</th>
             <th>{{ __('Products') }}</th>
           </tr>
@@ -29,6 +30,7 @@
               <td>{{ $order->user->contact->whatsapp }}</td>
               <td>{{ __($order->status->description) }}</td>
               <td>{{ __($order->paymentType->description) }}</td>
+              <td>{{ __($order->paymentStatus->description) }}</td>
               <td>{{ __($order->address->asString()) }}</td>
               <td>
                 @foreach($order->products as $orderProduct)

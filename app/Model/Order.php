@@ -11,6 +11,7 @@ use App\Model\{
     Order\OrderProductAdapter as OrderProduct,
     Order\OrderStatusAdapter as OrderStatus,
     Order\OrderPaymentTypeAdapter as OrderPaymentType,
+    Order\OrderPaymentStatusAdapter as OrderPaymentStatus,
     Product\ProductAdapter as Product
 };
 
@@ -55,5 +56,10 @@ class Order extends Model
     public function paymentType()
     {
         return $this->hasOne(OrderPaymentType::class, 'id', 'payment_type_id');
+    }
+
+    public function paymentStatus()
+    {
+        return $this->hasOne(OrderPaymentStatus::class, 'id', 'payment_status_id');
     }
 }

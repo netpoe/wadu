@@ -27,8 +27,12 @@
 
   <div class="container-sm">
     <h2>Elige tu medio de pago</h2>
-    <a
-      href="{{ route('front.orders.pending', ['order' => $order->id, 'statusId' => $orderStatus::PENDING_CASH, 'paymentTypeId' => $orderPaymentType::CASH]) }}" class="btn btn-lg btn-dark btn-block">Efectivo</a>
+    <form action="{{ route('front.orders.payment-type', ['order' => $order->id]) }}" method="POST">
+      @csrf
+      <input type="hidden" name="payment_type_id" value="{{ $orderPaymentType::CASH }}">
+      <input type="hidden" name="payment_status_id" value="{{ $orderPaymentStatus::PENDING }}">
+      <button class="btn btn-lg btn-dark btn-block">Efectivo</button>
+    </form>
     <hr>
     <button class="btn btn-lg btn-block btn-primary">Tarjeta</button>
     <div id="card-details">

@@ -12,6 +12,7 @@ use App\Model\{
     Order\OrderProductAdapter as OrderProduct,
     Order\OrderStatusAdapter as OrderStatus,
     Order\OrderPaymentTypeAdapter as OrderPaymentType,
+    Order\OrderPaymentStatusAdapter as OrderPaymentStatus,
     Address\AddressStateAdapter as AddressState
 };
 
@@ -38,10 +39,11 @@ class OrdersController extends Controller
             'order' => $order,
             'orderStatus' => new OrderStatus,
             'orderPaymentType' => new OrderPaymentType,
+            'orderPaymentStatus' => new OrderPaymentStatus,
         ]);
     }
 
-    public function pending(Order $order, Int $statusId, Int $paymentTypeId)
+    public function paymentType(Order $order, Request $request)
     {
         // TODO Check if order has been paid
         // TODO make an state machine for order statuses
@@ -49,12 +51,19 @@ class OrdersController extends Controller
         $order->where([
             'id' => $order->id,
         ])->update([
-            'status_id' => $statusId,
-            'payment_type_id' => $paymentTypeId,
+            'payment_type_id' => $request->input('payment_type_id'),
+            'payment_status_id' => $request->input('payment_status_id'),
         ]);
 
         // TODO notify business of a requested order
 
+        return redirect()->route('front.orders.pending', [
+            'order' => $order,
+        ]);
+    }
+
+    public function pending(Order $order)
+    {
         return view('front.orders.pending', [
             'order' => $order,
         ]);
