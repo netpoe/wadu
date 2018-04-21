@@ -11,10 +11,20 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/admin/orders/index.js', 'public/js')
-   .sass('resources/sass/admin/orders/new.scss', 'public/css/admin/orders', {
-    includePaths: ['node_modules']
-   })
-   .browserSync({
-      proxy: 'localhost:8000'
-    });
+mix.webpackConfig({
+  resolve: {
+    alias: {
+      '@js': path.resolve(__dirname, 'resources/assets/js')
+    }
+  }
+});
+
+mix.js('resources/js/admin/orders/index.js', 'public/js/admin/orders', {
+    includePaths: ['node_modules', 'resources']
+  })
+  .sass('resources/sass/admin/orders/new.scss', 'public/css/admin/orders', {
+    includePaths: ['node_modules', 'resources']
+  })
+  .browserSync({
+    proxy: 'localhost:8000'
+  });

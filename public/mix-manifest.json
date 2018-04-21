@@ -1,3 +1,4 @@
 {
-    "/js/index.js": "/js/index.js"
+    "/js/admin/orders/index.js": "/js/admin/orders/index.js",
+    "/css/admin/orders/new.css": "/css/admin/orders/new.css"
 }

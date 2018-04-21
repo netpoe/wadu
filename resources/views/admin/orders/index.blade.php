@@ -46,3 +46,7 @@
 </section>
 
 @endsection
+
+@push('footer-scripts')
+  {{ asset('js/admin/orders/index.js') }}
+@endpush

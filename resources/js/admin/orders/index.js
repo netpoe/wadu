@@ -5,7 +5,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('../../../assets/js/bootstrap');
+require('@js/bootstrap');
 import Echo from 'laravel-echo'
 
 window.Vue = require('vue');
