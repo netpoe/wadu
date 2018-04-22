@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @push('head-links')
+{{-- {{ asset('js/admin/orders/index.js') }} --}}
 <link rel="stylesheet" href="{{ asset('css/admin/orders/new.css') }}">
 @endpush
 
@@ -29,9 +30,9 @@
               <td>{{ $order->id }}</td>
               <td>{{ $order->user->contact->whatsapp }}</td>
               <td>{{ __($order->status->description) }}</td>
-              <td>{{ __($order->paymentType->description) }}</td>
-              <td>{{ __($order->paymentStatus->description) }}</td>
-              <td>{{ __($order->address->asString()) }}</td>
+              <td>@isset($order->paymentType){{ __($order->paymentType->description) }}@endisset</td>
+              <td>@isset($order->paymentStatus){{ __($order->paymentStatus->description) }}@endisset</td>
+              <td>@isset($order->address){{ __($order->address->asString()) }}@endisset</td>
               <td>
                 @foreach($order->products as $orderProduct)
                   <p>{{ $orderProduct->product->info->name }}</p>
@@ -48,5 +49,23 @@
 @endsection
 
 @push('footer-scripts')
-  {{ asset('js/admin/orders/index.js') }}
+  <script src="{{ asset('js/admin/orders/index.js') }}"></script>
+  <script>
+    (function(global){
+      Echo.private('order.' + {{ $order->business->id }})
+          .listen('.order.created', (e) => {
+            console.log(e);
+          });
+      // Echo.join('orders.' + {!! $order->business->id !!})
+      //   .here((order) => {
+      //     console.log(order);
+      //   })
+      //   .joining((order) => {
+      //     console.log(order);
+      //   })
+      //   .leaving((order) => {
+      //     console.log(order);
+      //   });
+    })(window)
+  </script>
 @endpush

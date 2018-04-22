@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Form\Admin\NewOrderForm;
 use App\Service\WhatsAppService;
+use App\Event\Admin\OrderEvent;
 
 use App\Util\{
     WhatsAppNumberProcessor,
@@ -92,6 +93,8 @@ class OrdersController extends Controller
             'user_id' => $user->id,
             'status_id' => OrderStatus::STARTED,
         ]);
+
+        event(new OrderEvent($order));
 
         return redirect()->route('admin.orders.greet', [$order]);
     }
