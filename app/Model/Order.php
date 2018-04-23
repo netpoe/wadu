@@ -28,9 +28,16 @@ class Order extends Model
         'amount'
     ];
 
+    protected $appends = ['process_route'];
+
     public function user()
     {
         return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    public function processor()
+    {
+        return $this->hasOne(User::class, 'id', 'processed_by_user_id');
     }
 
     public function business()
@@ -61,5 +68,11 @@ class Order extends Model
     public function paymentStatus()
     {
         return $this->hasOne(OrderPaymentStatus::class, 'id', 'payment_status_id');
+    }
+
+
+    public function getProcessRouteAttribute()
+    {
+        return route('admin.orders.process', ['order' => $this->attributes['id']]);
     }
 }

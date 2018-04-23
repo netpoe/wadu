@@ -7,7 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use App\Model\{
     Business\BusinessAdapter as Business,
-    User\UserContactAdapter as UserContact
+    User\UserContactAdapter as UserContact,
+    User\UserRoleAdapter as UserRole
 };
 
 class User extends Authenticatable
@@ -47,5 +48,10 @@ class User extends Authenticatable
     public function contact()
     {
         return $this->hasOne(UserContact::class, 'user_id', 'id');
+    }
+
+    public function role()
+    {
+        return $this->hasOne(UserRole::class, 'id', 'role_id');
     }
 }

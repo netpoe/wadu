@@ -31,8 +31,8 @@ class OrdersController extends Controller
         $orders = Auth::user()
                     ->business
                     ->orders()
-                    ->whereNotNull('payment_status_id')
-                    ->where('payment_type_id', OrderPaymentType::CASH)
+                    // ->whereNotNull('payment_status_id')
+                    // ->where('payment_type_id', OrderPaymentType::CASH)
                     ->with(Order::ORDERS_WITH)
                     ->latest()
                     ->skip(0)->take(10)
@@ -56,6 +56,21 @@ class OrdersController extends Controller
         return view('admin.orders.new', [
             'form' => $form,
         ]);
+    }
+
+    public function show(Order $order)
+    {
+        return view('admin.orders.show', [
+            'order' => $order
+        ]);
+    }
+
+    public function process(Order $order)
+    {
+        $order->processed_by_user_id = Auth::id();
+        $order->save();
+
+        return redirect()->route('admin.orders.show', [$order]);
     }
 
     public function create(

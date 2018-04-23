@@ -18378,6 +18378,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -18388,10 +18393,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         paymentType: '',
         paymentStatus: '',
         address: '',
-        products: ''
+        products: '',
+        processedBy: ''
       },
       tbody: {
-        seeOrder: ''
+        seeOrder: '',
+        processOrder: ''
       },
       orders: []
     };
@@ -18442,6 +18449,8 @@ var render = function() {
           _c("th", [_vm._v(_vm._s(_vm.thead.address))]),
           _vm._v(" "),
           _c("th", [_vm._v(_vm._s(_vm.thead.products))]),
+          _vm._v(" "),
+          _c("th", [_vm._v(_vm._s(_vm.thead.processedBy))]),
           _vm._v(" "),
           _c("td")
         ])
@@ -18508,13 +18517,25 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("td", [
+                order.processed_by_user_id
+                  ? _c("span", [_vm._v(_vm._s(order.processor.email))])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "a",
+                  { staticClass: "btn btn-sm btn-light", attrs: { href: "#" } },
+                  [_vm._v(_vm._s(_vm.tbody.seeOrder))]
+                ),
+                _vm._v(" "),
                 _c(
                   "a",
                   {
                     staticClass: "btn btn-sm btn-primary",
-                    attrs: { href: "#" }
+                    attrs: { href: order.process_route }
                   },
-                  [_vm._v(_vm._s(_vm.tbody.seeOrder))]
+                  [_vm._v(_vm._s(_vm.tbody.processOrder))]
                 )
               ])
             ]

@@ -12,6 +12,8 @@ class OrderAdapter extends Order
 {
     const ORDERS_WITH = ['user',
                         'user.contact',
+                        'processor',
+                        'processor.contact',
                         'status',
                         'paymentType',
                         'paymentStatus',

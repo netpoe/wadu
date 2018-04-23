@@ -26,7 +26,9 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){
     Route::post('/admin/orders/create', 'OrdersController@create')->name('admin.orders.create');
     Route::get('/admin/orders/{order}/greet', 'OrdersController@greet')->name('admin.orders.greet');
     Route::get('/admin/orders/new', 'OrdersController@new')->name('admin.orders.new');
-    Route::get('/admin/orders/index', 'OrdersController@index')->name('admin.orders.index');
+    Route::get('/admin/orders', 'OrdersController@index')->name('admin.orders.index');
+    Route::get('/admin/orders/{order}', 'OrdersController@show')->name('admin.orders.show');
+    Route::get('/admin/orders/{order?}/process', 'OrdersController@process')->name('admin.orders.process');
 });
 
 /**
@@ -34,6 +36,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){
  */
 // TODO only BUSINESS_OWNER can see this page
 Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){
+    Route::post('/admin/business/users/{user}/update', 'BusinessController@updateUser')->name('admin.business.users.update');
     Route::post('/admin/business/users/create', 'BusinessController@createUser')->name('admin.business.users.create');
     Route::get('/admin/business/users', 'BusinessController@users')->name('admin.business.users');
 });

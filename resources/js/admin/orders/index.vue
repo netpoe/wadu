@@ -10,6 +10,7 @@
           <th>{{ thead.paymentStatus }}</th>
           <th>{{ thead.address }}</th>
           <th>{{ thead.products }}</th>
+          <th>{{ thead.processedBy }}</th>
           <td></td>
         </tr>
       </thead>
@@ -28,7 +29,11 @@
           <td>
             <p v-for="orderProduct in order.products"><span v-if="orderProduct.product.info">{{ orderProduct.product.info.name }}</span></p>
           </td>
-          <td><a href="#" class="btn btn-sm btn-primary">{{ tbody.seeOrder }}</a></td>
+          <td><span v-if="order.processed_by_user_id">{{ order.processor.email }}</span></td>
+          <td>
+            <a href="#" class="btn btn-sm btn-light">{{ tbody.seeOrder }}</a>
+            <a :href="order.process_route" class="btn btn-sm btn-primary">{{ tbody.processOrder }}</a>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -46,9 +51,11 @@
           paymentStatus: '',
           address: '',
           products: '',
+          processedBy: '',
         },
         tbody: {
-          seeOrder: ''
+          seeOrder: '',
+          processOrder: ''
         },
         orders: []
       }

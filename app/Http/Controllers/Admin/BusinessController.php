@@ -37,4 +37,15 @@ class BusinessController extends Controller
 
         return redirect()->route('admin.business.users');
     }
+
+    public function updateUser(User $user, Request $request)
+    {
+        // TODO validate input
+
+        $user->where('id', $user->id)->update([
+            'email' => $request->input('email')
+        ]);
+
+        return redirect()->route('admin.business.users');
+    }
 }
