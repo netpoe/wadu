@@ -36,4 +36,9 @@ class UserAddress extends Model
     {
         return $this->belongsTo(AddressState::class, 'state_id', 'id');
     }
+
+    public function getInteriorNumberAttribute($value)
+    {
+        return "int $value";
+    }
 }

@@ -19,14 +19,18 @@ window.Echo = new Echo({
     namespace: null
 });
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+// let adminOrdersTr = Vue.component('admin-orders-tr', require('./index.vue'));
+// let adminOrdersTr = {
+//   template: require('./index.vue')
+// };
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue'));
-
-// const app = new Vue({
-//     el: '#app'
-// });
+window.AdminOrdersIndex = new Vue({
+    el: '#admin-orders-index',
+    mounted() {
+      console.log('parent mounted');
+      // this.$refs.adminOrdersTr.displayOrders = true;
+    },
+    components: {
+      'admin-orders-tr': require('./index.vue')
+    },
+});

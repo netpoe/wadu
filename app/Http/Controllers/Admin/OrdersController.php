@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Form\Admin\NewOrderForm;
 use App\Service\WhatsAppService;
-use App\Event\Admin\OrderEvent;
+use App\Event\Admin\IndexOrdersEvent;
 
 use App\Util\{
     WhatsAppNumberProcessor,
@@ -26,7 +26,23 @@ class OrdersController extends Controller
 {
     public function index() {
 
-        $orders = Auth::user()->business->orders;
+        $with = ['user',
+                'user.contact',
+                'status',
+                'paymentType',
+                'paymentStatus',
+                'address',
+                'address.country',
+                'address.state',
+                'products.product',
+                'products.product.info'];
+
+        $orders = Auth::user()
+                    ->business
+                    ->orders()
+                    ->with($with)
+                    ->skip(0)->take(10)
+                    ->get();
 
         return view('admin.orders.index', [
             'orders' => $orders
@@ -94,7 +110,7 @@ class OrdersController extends Controller
             'status_id' => OrderStatus::STARTED,
         ]);
 
-        event(new OrderEvent($order));
+        event(new IndexOrdersEvent($order->business->orders));
 
         return redirect()->route('admin.orders.greet', [$order]);
     }

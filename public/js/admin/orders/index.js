@@ -992,24 +992,29 @@ window.Vue = __webpack_require__(32);
 window.Pusher = __webpack_require__(35);
 
 window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default.a({
-  broadcaster: 'pusher',
-  key: "4fba5afeae4341966e9e",
-  cluster: "us2",
-  encrypted: true,
-  namespace: null
+    broadcaster: 'pusher',
+    key: "4fba5afeae4341966e9e",
+    cluster: "us2",
+    encrypted: true,
+    namespace: null
 });
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+// let adminOrdersTr = Vue.component('admin-orders-tr', require('./index.vue'));
+// let adminOrdersTr = {
+//   template: require('./index.vue')
+// };
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue'));
+window.AdminOrdersIndex = new Vue({
+    el: '#admin-orders-index',
+    mounted: function mounted() {
+        console.log('parent mounted');
+        // this.$refs.adminOrdersTr.displayOrders = true;
+    },
 
-// const app = new Vue({
-//     el: '#app'
-// });
+    components: {
+        'admin-orders-tr': __webpack_require__(41)
+    }
+});
 
 /***/ }),
 /* 11 */
@@ -18178,6 +18183,325 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(42)
+/* script */
+var __vue_script__ = __webpack_require__(43)
+/* template */
+var __vue_template__ = __webpack_require__(44)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/admin/orders/index.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3c1b76e6", Component.options)
+  } else {
+    hotAPI.reload("data-v-3c1b76e6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports) {
+
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file.
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 43 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      thead: {
+        user: '',
+        status: '',
+        paymentType: '',
+        paymentStatus: '',
+        address: '',
+        products: ''
+      },
+      orders: []
+    };
+  },
+  mounted: function mounted() {
+    console.log('Component mounted.');
+  }
+});
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "table-responsive" }, [
+    _c("table", { staticClass: "table" }, [
+      _c("thead", [
+        _c("tr", [
+          _c("th", [_vm._v("ID")]),
+          _vm._v(" "),
+          _c("th", [_vm._v(_vm._s(_vm.thead.user))]),
+          _vm._v(" "),
+          _c("th", [_vm._v(_vm._s(_vm.thead.status))]),
+          _vm._v(" "),
+          _c("th", [_vm._v(_vm._s(_vm.thead.paymentType))]),
+          _vm._v(" "),
+          _c("th", [_vm._v(_vm._s(_vm.thead.paymentStatus))]),
+          _vm._v(" "),
+          _c("th", [_vm._v(_vm._s(_vm.thead.address))]),
+          _vm._v(" "),
+          _c("th", [_vm._v(_vm._s(_vm.thead.products))])
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.orders, function(order) {
+          return _c("tr", [
+            _c("td", [_vm._v(_vm._s(order.id))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(order.user.contact.whatsapp))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(order.status.description))]),
+            _vm._v(" "),
+            _c("td", [
+              order.payment_type
+                ? _c("span", [_vm._v(_vm._s(order.payment_type.description))])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              order.payment_status
+                ? _c("span", [_vm._v(_vm._s(order.payment_status.description))])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              order.address
+                ? _c("span", [
+                    _vm._v(
+                      "\n            " +
+                        _vm._s(order.address.street) +
+                        ", " +
+                        _vm._s(order.address.interior_number) +
+                        ". " +
+                        _vm._s(order.address.city) +
+                        ", " +
+                        _vm._s(order.address.state.name) +
+                        " - " +
+                        _vm._s(order.address.country.name) +
+                        "\n          "
+                    )
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c(
+              "td",
+              _vm._l(order.products, function(orderProduct) {
+                return _c("p", [
+                  orderProduct.product.info
+                    ? _c("span", [
+                        _vm._v(_vm._s(orderProduct.product.info.name))
+                      ])
+                    : _vm._e()
+                ])
+              })
+            )
+          ])
+        })
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3c1b76e6", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

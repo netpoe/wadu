@@ -9,5 +9,5 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[*.{html,phtml,js,mustache,sass,scss,svg,blade.php}]
+[*.{html,phtml,js,mustache,sass,scss,svg,blade.php,vue}]
 indent_size = 2

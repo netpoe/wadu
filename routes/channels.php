@@ -13,4 +13,4 @@ use App\Broadcasting\Admin\OrdersChannel;
 |
 */
 
-Broadcast::channel('order.{business}', OrdersChannel::class);
+Broadcast::channel('orders.{business}', OrdersChannel::class);

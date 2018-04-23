@@ -10,26 +10,27 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use App\Model\Order\OrderAdapter as Order;
+use Illuminate\Database\Eloquent\Collection;
 
-class OrderEvent implements ShouldBroadcast
+class IndexOrdersEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $order;
+    public $orders;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Order $order)
+    public function __construct(Collection $orders)
     {
-        $this->order = $order;
+        $this->orders = $orders;
     }
 
     public function broadcastAs()
     {
-        return 'order.created';
+        return 'index.orders.event';
     }
 
     /**
@@ -39,7 +40,8 @@ class OrderEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel("order.{$this->order->business->id}");
-        return new PresenceChannel("order.{$this->order->business->id}");
+        $businessId = $this->orders->first()->business->id;
+
+        return new PrivateChannel("orders.$businessId");
     }
 }
