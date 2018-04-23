@@ -25,22 +25,11 @@ use App\Model\{
 class OrdersController extends Controller
 {
     public function index() {
-
-        $with = ['user',
-                'user.contact',
-                'status',
-                'paymentType',
-                'paymentStatus',
-                'address',
-                'address.country',
-                'address.state',
-                'products.product',
-                'products.product.info'];
-
         $orders = Auth::user()
                     ->business
                     ->orders()
-                    ->with($with)
+                    ->with(Order::ORDERS_WITH)
+                    ->latest()
                     ->skip(0)->take(10)
                     ->get();
 
@@ -110,7 +99,15 @@ class OrdersController extends Controller
             'status_id' => OrderStatus::STARTED,
         ]);
 
-        event(new IndexOrdersEvent($order->business->orders));
+        $orders = Auth::user()
+                    ->business
+                    ->orders()
+                    ->with(Order::ORDERS_WITH)
+                    ->latest()
+                    ->skip(0)->take(10)
+                    ->get();
+
+        event(new IndexOrdersEvent($orders));
 
         return redirect()->route('admin.orders.greet', [$order]);
     }

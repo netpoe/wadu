@@ -10,6 +10,17 @@ use App\Model\{
 
 class OrderAdapter extends Order
 {
+    const ORDERS_WITH = ['user',
+                        'user.contact',
+                        'status',
+                        'paymentType',
+                        'paymentStatus',
+                        'address',
+                        'address.country',
+                        'address.state',
+                        'products.product',
+                        'products.product.info'];
+
     public function product(Product $product)
     {
         if ($this->products->isEmpty()) {

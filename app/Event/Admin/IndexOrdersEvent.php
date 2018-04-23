@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 class IndexOrdersEvent implements ShouldBroadcast
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable, InteractsWithSockets;
 
     public $orders;
 

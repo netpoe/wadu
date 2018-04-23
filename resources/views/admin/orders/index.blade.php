@@ -28,6 +28,15 @@
       adminOrdersTr.$data.thead.address = "{{ __('Address') }}";
       adminOrdersTr.$data.thead.products = "{{ __('Products') }}";
       adminOrdersTr.$data.orders = {!! $orders !!};
+
+      console.log(adminOrdersTr.$data.orders);
+
+      Echo.private('orders.' + {{ $orders->first()->business->id }})
+          .listen('.index.orders.event', (data) => {
+            console.log(data);
+            adminOrdersTr.$data.orders = data.orders;
+          });
+
     })(window)
   </script>
 @endpush
