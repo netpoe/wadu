@@ -8,7 +8,8 @@ use App\Util\StringUtil;
 use App\Model\{
     Product\ProductAdapter as Product,
     Product\ProductCategoryAdapter as ProductCategory,
-    Order\OrderAdapter as Order
+    Order\OrderAdapter as Order,
+    User\UserAdapter as User
 };
 
 class Business extends Model
@@ -35,6 +36,12 @@ class Business extends Model
     {
         return $this->hasMany(Order::class, 'business_id', 'id');
     }
+
+    public function users()
+    {
+        return $this->hasMany(User::class, 'business_id', 'id');
+    }
+
 
     public function setSlugAttribute($value)
     {

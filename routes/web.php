@@ -30,6 +30,15 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){
 });
 
 /**
+ * ADMIN BUSINESS
+ */
+// TODO only BUSINESS_OWNER can see this page
+Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){
+    Route::post('/admin/business/users/create', 'BusinessController@createUser')->name('admin.business.users.create');
+    Route::get('/admin/business/users', 'BusinessController@users')->name('admin.business.users');
+});
+
+/**
  * ADMIN MENU
  */
 Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){

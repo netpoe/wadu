@@ -73,6 +73,15 @@ class RegisterController extends Controller
             'role_id' => UserRole::BUSINESS_OWNER,
         ]);
 
+        $business = Business::create([
+            'name' => $data['business_name'],
+            'slug' => $data['business_name'],
+            'user_id' => $user->id,
+        ]);
+
+        $user->business_id = $business->id;
+        $user->save();
+
         return $user;
     }
 }
