@@ -8,7 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Model\{
     Business\BusinessAdapter as Business,
     User\UserContactAdapter as UserContact,
-    User\UserRoleAdapter as UserRole
+    User\UserRoleAdapter as UserRole,
+    User\UserInfoAdapter as UserInfo
 };
 
 class User extends Authenticatable
@@ -53,5 +54,10 @@ class User extends Authenticatable
     public function role()
     {
         return $this->hasOne(UserRole::class, 'id', 'role_id');
+    }
+
+    public function info()
+    {
+        return $this->hasOne(UserInfo::class, 'user_id', 'id');
     }
 }

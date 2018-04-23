@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Hash;
 
 use App\Model\{
     User\UserAdapter as User,
-    User\UserRoleAdapter as UserRole
+    User\UserRoleAdapter as UserRole,
+    User\UserInfoAdapter as UserInfo
 };
 
 class BusinessController extends Controller
@@ -33,6 +34,12 @@ class BusinessController extends Controller
             'role_id' => UserRole::EMPLOYEE,
             'business_id' => Auth::user()->business->id,
             'password' => Hash::make('password')
+        ]);
+
+        $info = UserInfo::create([
+            'user_id' => $user->id,
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
         ]);
 
         return redirect()->route('admin.business.users');

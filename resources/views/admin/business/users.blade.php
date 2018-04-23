@@ -36,11 +36,11 @@
         </fieldset>
         <fieldset class="form-group col">
           <label for="first_name" class="sr-only">{{ __('Name') }}</label>
-          <input value="{{ $user->email }}" type="text" name="first_name" class="form-control form-control-sm">
+          <input value="{{ $user->info->first_name }}" type="text" name="first_name" class="form-control form-control-sm">
         </fieldset>
         <fieldset class="form-group col">
           <label for="last_name" class="sr-only">{{ __('Last name') }}</label>
-          <input value="{{ $user->email }}" type="text" name="last_name" class="form-control form-control-sm">
+          <input value="{{ $user->info->last_name }}" type="text" name="last_name" class="form-control form-control-sm">
         </fieldset>
         <fieldset class="form-group col">
           <label for="role_id" class="sr-only">{{ __('Role') }}</label>

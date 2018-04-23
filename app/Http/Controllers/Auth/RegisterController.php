@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Model\{
     User\UserAdapter as User,
     User\UserRoleAdapter as UserRole,
+    User\UserInfoAdapter as UserInfo,
     Business\BusinessAdapter as Business
 };
 
@@ -71,6 +72,10 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'role_id' => UserRole::BUSINESS_OWNER,
+        ]);
+
+        $info = UserInfo::create([
+            'user_id' => $user->id,
         ]);
 
         $business = Business::create([
