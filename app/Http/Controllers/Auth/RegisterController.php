@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Model\User\UserAdapter as User;
-use App\Model\Business\BusinessAdapter as Business;
+use App\Model\{
+    User\UserAdapter as User,
+    User\UserRoleAdapter as UserRole,
+    Business\BusinessAdapter as Business
+};
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -66,12 +70,7 @@ class RegisterController extends Controller
         $user = User::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-        ]);
-
-        $business = Business::create([
-            'name' => $data['business_name'],
-            'slug' => $data['business_name'],
-            'user_id' => $user->id,
+            'role_id' => UserRole::BUSINESS_OWNER,
         ]);
 
         return $user;
