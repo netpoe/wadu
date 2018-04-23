@@ -41,9 +41,7 @@
     &.payment-type-cash {}
     &.payment-type-card {}
 
-    &.cash-pending {
-      background-color: $green;
-    }
+    &.cash-pending {}
   }
 }
 

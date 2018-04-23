@@ -13722,10 +13722,6 @@ html::-webkit-scrollbar {
   border-color: #28a745;
 }
 
-#admin-orders-index .order-row.cash-pending {
-  background-color: #28a745;
-}
-
 /*
   Media queries
 */

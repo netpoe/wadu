@@ -19,7 +19,9 @@ use App\Model\{
     User\UserAdapter as User,
     User\UserContactAdapter as UserContact,
     Order\OrderAdapter as Order,
-    Order\OrderStatusAdapter as OrderStatus
+    Order\OrderStatusAdapter as OrderStatus,
+    Order\OrderPaymentStatusAdapter as OrderPaymentStatus,
+    Order\OrderPaymentTypeAdapter as OrderPaymentType
 };
 
 class OrdersController extends Controller
@@ -29,6 +31,8 @@ class OrdersController extends Controller
         $orders = Auth::user()
                     ->business
                     ->orders()
+                    ->whereNotNull('payment_status_id')
+                    ->where('payment_type_id', OrderPaymentType::CASH)
                     ->with(Order::ORDERS_WITH)
                     ->latest()
                     ->skip(0)->take(10)
