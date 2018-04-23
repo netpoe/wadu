@@ -43,7 +43,7 @@ class User extends Authenticatable
 
     public function business()
     {
-        return $this->belongsTo(Business::class, 'id', 'user_id');
+        return $this->belongsTo(Business::class, 'business_id', 'id');
     }
 
     public function contact()

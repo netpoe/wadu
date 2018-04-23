@@ -29,9 +29,9 @@
           <td>
             <p v-for="orderProduct in order.products"><span v-if="orderProduct.product.info">{{ orderProduct.product.info.name }}</span></p>
           </td>
-          <td><span v-if="order.processed_by_user_id">{{ order.processor.email }}</span></td>
+          <td><span v-if="order.processed_by_user_id">{{ order.processor.info.full_name }}</span></td>
           <td>
-            <a href="#" class="btn btn-sm btn-light">{{ tbody.seeOrder }}</a>
+            <a :href="order.show_route" class="btn btn-sm btn-light">{{ tbody.seeOrder }}</a>
             <a :href="order.process_route" class="btn btn-sm btn-primary">{{ tbody.processOrder }}</a>
           </td>
         </tr>

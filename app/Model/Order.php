@@ -28,7 +28,10 @@ class Order extends Model
         'amount'
     ];
 
-    protected $appends = ['process_route'];
+    protected $appends = [
+        'process_route',
+        'show_route',
+    ];
 
     public function user()
     {
@@ -74,5 +77,10 @@ class Order extends Model
     public function getProcessRouteAttribute()
     {
         return route('admin.orders.process', ['order' => $this->attributes['id']]);
+    }
+
+    public function getShowRouteAttribute()
+    {
+        return route('admin.orders.show', ['order' => $this->attributes['id']]);
     }
 }

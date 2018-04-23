@@ -14,6 +14,7 @@ class OrderAdapter extends Order
                         'user.contact',
                         'processor',
                         'processor.contact',
+                        'processor.info',
                         'status',
                         'paymentType',
                         'paymentStatus',

@@ -67,8 +67,13 @@ class OrdersController extends Controller
 
     public function process(Order $order)
     {
+        // TODO una orden no puede ser procesada por un usuario que está atendiendo otra orden
+
         $order->processed_by_user_id = Auth::id();
         $order->save();
+
+        $orders = $this->getBusinessOrders();
+        event(new IndexOrdersEvent($orders));
 
         return redirect()->route('admin.orders.show', [$order]);
     }

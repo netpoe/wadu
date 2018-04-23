@@ -17,7 +17,7 @@ class CreateBusinessTable extends Migration {
 			$table->increments('id');
 			$table->string('name')->nullable();
             $table->string('slug')->nullable()->unique();
-			$table->integer('user_id')->unsigned()->index('business_to_users');
+			$table->integer('created_by')->unsigned()->index('business_to_users');
 			$table->timestamps();
 		});
 	}

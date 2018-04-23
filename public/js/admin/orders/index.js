@@ -18518,14 +18518,17 @@ var render = function() {
               _vm._v(" "),
               _c("td", [
                 order.processed_by_user_id
-                  ? _c("span", [_vm._v(_vm._s(order.processor.email))])
+                  ? _c("span", [_vm._v(_vm._s(order.processor.info.full_name))])
                   : _vm._e()
               ]),
               _vm._v(" "),
               _c("td", [
                 _c(
                   "a",
-                  { staticClass: "btn btn-sm btn-light", attrs: { href: "#" } },
+                  {
+                    staticClass: "btn btn-sm btn-light",
+                    attrs: { href: order.show_route }
+                  },
                   [_vm._v(_vm._s(_vm.tbody.seeOrder))]
                 ),
                 _vm._v(" "),

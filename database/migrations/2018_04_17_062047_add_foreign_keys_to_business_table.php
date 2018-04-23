@@ -14,7 +14,7 @@ class AddForeignKeysToBusinessTable extends Migration {
 	{
 		Schema::table('business', function(Blueprint $table)
 		{
-			$table->foreign('user_id', 'business_to_users')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+			$table->foreign('created_by', 'business_to_users')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
 		});
 	}
 
