@@ -16,6 +16,7 @@ class OrderStatus extends Model
     const DELIVERED = 4;
     const REVIEWED = 5;
     const RETURNED = 6;
+    const READY_TO_SHIP = 7;
 
     const DATA = [
         self::STARTED => [
@@ -47,6 +48,11 @@ class OrderStatus extends Model
             'id' => self::RETURNED,
             'value' => 'returned',
             'description' => 'Returned',
+        ],
+        self::READY_TO_SHIP => [
+            'id' => self::READY_TO_SHIP,
+            'value' => 'ready_to_ship',
+            'description' => 'Ready to ship',
         ],
     ];
 }
