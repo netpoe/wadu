@@ -967,7 +967,8 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(10);
-module.exports = __webpack_require__(36);
+__webpack_require__(40);
+module.exports = __webpack_require__(41);
 
 
 /***/ }),
@@ -1012,7 +1013,7 @@ window.AdminOrdersIndex = new Vue({
     },
 
     components: {
-        'admin-orders-tr': __webpack_require__(41)
+        'admin-orders-tr': __webpack_require__(36)
     }
 });
 
@@ -18180,24 +18181,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 /* 36 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 37 */,
-/* 38 */,
-/* 39 */,
-/* 40 */,
-/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(42)
+var normalizeComponent = __webpack_require__(37)
 /* script */
-var __vue_script__ = __webpack_require__(43)
+var __vue_script__ = __webpack_require__(38)
 /* template */
-var __vue_template__ = __webpack_require__(44)
+var __vue_template__ = __webpack_require__(39)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -18236,7 +18227,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 42 */
+/* 37 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -18345,11 +18336,13 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 43 */
+/* 38 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -18397,16 +18390,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         address: '',
         products: ''
       },
+      tbody: {
+        seeOrder: ''
+      },
       orders: []
     };
   },
   mounted: function mounted() {
     console.log('Component mounted.');
+  },
+
+  methods: {
+    classBindings: function classBindings(order) {
+      var classes = {};
+
+      var paymentStatus = order.payment_status ? order.payment_status.value : '';
+      classes['payment-status-' + paymentStatus] = order.payment_status != null;
+
+      var paymentType = order.payment_type ? order.payment_type.value : '';
+      classes['payment-type-' + paymentType] = order.payment_type != null;
+
+      classes[paymentType + '-' + paymentStatus] = order.payment_type && order.payment_status;
+
+      return classes;
+    }
   }
 });
 
 /***/ }),
-/* 44 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -18429,65 +18441,84 @@ var render = function() {
           _vm._v(" "),
           _c("th", [_vm._v(_vm._s(_vm.thead.address))]),
           _vm._v(" "),
-          _c("th", [_vm._v(_vm._s(_vm.thead.products))])
+          _c("th", [_vm._v(_vm._s(_vm.thead.products))]),
+          _vm._v(" "),
+          _c("td")
         ])
       ]),
       _vm._v(" "),
       _c(
         "tbody",
         _vm._l(_vm.orders, function(order) {
-          return _c("tr", [
-            _c("td", [_vm._v(_vm._s(order.id))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(order.user.contact.whatsapp))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(order.status.description))]),
-            _vm._v(" "),
-            _c("td", [
-              order.payment_type
-                ? _c("span", [_vm._v(_vm._s(order.payment_type.description))])
-                : _vm._e()
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              order.payment_status
-                ? _c("span", [_vm._v(_vm._s(order.payment_status.description))])
-                : _vm._e()
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              order.address
-                ? _c("span", [
-                    _vm._v(
-                      "\n            " +
-                        _vm._s(order.address.street) +
-                        ", " +
-                        _vm._s(order.address.interior_number) +
-                        ". " +
-                        _vm._s(order.address.city) +
-                        ", " +
-                        _vm._s(order.address.state.name) +
-                        " - " +
-                        _vm._s(order.address.country.name) +
-                        "\n          "
-                    )
+          return _c(
+            "tr",
+            { staticClass: "order-row", class: _vm.classBindings(order) },
+            [
+              _c("td", [_vm._v(_vm._s(order.id))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(order.user.contact.whatsapp))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(order.status.description))]),
+              _vm._v(" "),
+              _c("td", [
+                order.payment_type
+                  ? _c("span", [_vm._v(_vm._s(order.payment_type.description))])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                order.payment_status
+                  ? _c("span", [
+                      _vm._v(_vm._s(order.payment_status.description))
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                order.address
+                  ? _c("span", [
+                      _vm._v(
+                        "\n            " +
+                          _vm._s(order.address.street) +
+                          ", " +
+                          _vm._s(order.address.interior_number) +
+                          ". " +
+                          _vm._s(order.address.city) +
+                          ", " +
+                          _vm._s(order.address.state.name) +
+                          " - " +
+                          _vm._s(order.address.country.name) +
+                          "\n          "
+                      )
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c(
+                "td",
+                _vm._l(order.products, function(orderProduct) {
+                  return _c("p", [
+                    orderProduct.product.info
+                      ? _c("span", [
+                          _vm._v(_vm._s(orderProduct.product.info.name))
+                        ])
+                      : _vm._e()
                   ])
-                : _vm._e()
-            ]),
-            _vm._v(" "),
-            _c(
-              "td",
-              _vm._l(order.products, function(orderProduct) {
-                return _c("p", [
-                  orderProduct.product.info
-                    ? _c("span", [
-                        _vm._v(_vm._s(orderProduct.product.info.name))
-                      ])
-                    : _vm._e()
-                ])
-              })
-            )
-          ])
+                })
+              ),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-sm btn-primary",
+                    attrs: { href: "#" }
+                  },
+                  [_vm._v(_vm._s(_vm.tbody.seeOrder))]
+                )
+              ])
+            ]
+          )
         })
       )
     ])
@@ -18502,6 +18533,18 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-3c1b76e6", module.exports)
   }
 }
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

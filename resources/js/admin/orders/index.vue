@@ -10,10 +10,11 @@
           <th>{{ thead.paymentStatus }}</th>
           <th>{{ thead.address }}</th>
           <th>{{ thead.products }}</th>
+          <td></td>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="order in orders">
+        <tr v-for="order in orders" class="order-row" :class="classBindings(order)">
           <td>{{ order.id }}</td>
           <td>{{ order.user.contact.whatsapp }}</td>
           <td>{{ order.status.description }}</td>
@@ -27,11 +28,12 @@
           <td>
             <p v-for="orderProduct in order.products"><span v-if="orderProduct.product.info">{{ orderProduct.product.info.name }}</span></p>
           </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </template>
+          <td><a href="#" class="btn btn-sm btn-primary">{{ tbody.seeOrder }}</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</template>
 
   <script>
   export default {
@@ -45,11 +47,29 @@
           address: '',
           products: '',
         },
+        tbody: {
+          seeOrder: ''
+        },
         orders: []
       }
     },
     mounted() {
       console.log('Component mounted.')
-    }
+    },
+    methods: {
+      classBindings(order){
+        var classes = {};
+
+        var paymentStatus = order.payment_status ? order.payment_status.value : '';
+        classes['payment-status-' + paymentStatus] = order.payment_status != null;
+
+        var paymentType = order.payment_type ? order.payment_type.value : '';
+        classes['payment-type-' + paymentType] = order.payment_type != null;
+
+        classes[`${paymentType}-${paymentStatus}`] = order.payment_type && order.payment_status;
+
+        return classes;
+      }
+    },
   }
   </script>

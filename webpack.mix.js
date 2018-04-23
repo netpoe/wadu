@@ -25,6 +25,9 @@ mix.js('resources/js/admin/orders/index.js', 'public/js/admin/orders', {
   .sass('resources/sass/admin/orders/new.scss', 'public/css/admin/orders', {
     includePaths: ['node_modules', 'resources']
   })
+  .sass('resources/sass/admin/orders/index.scss', 'public/css/admin/orders', {
+    includePaths: ['node_modules', 'resources']
+  })
   .browserSync({
     proxy: 'localhost:8000'
   });

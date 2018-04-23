@@ -24,7 +24,8 @@ use App\Model\{
 
 class OrdersController extends Controller
 {
-    public function index() {
+    private function getBusinessOrders()
+    {
         $orders = Auth::user()
                     ->business
                     ->orders()
@@ -32,6 +33,12 @@ class OrdersController extends Controller
                     ->latest()
                     ->skip(0)->take(10)
                     ->get();
+
+        return $orders;
+    }
+
+    public function index() {
+        $orders = $this->getBusinessOrders();
 
         return view('admin.orders.index', [
             'orders' => $orders
@@ -99,13 +106,7 @@ class OrdersController extends Controller
             'status_id' => OrderStatus::STARTED,
         ]);
 
-        $orders = Auth::user()
-                    ->business
-                    ->orders()
-                    ->with(Order::ORDERS_WITH)
-                    ->latest()
-                    ->skip(0)->take(10)
-                    ->get();
+        $orders = $this->getBusinessOrders();
 
         event(new IndexOrdersEvent($orders));
 
