@@ -25,7 +25,9 @@ class Order extends Model
         'user_id',
         'status_id',
         'product_id',
-        'amount'
+        'amount',
+        'payment_type_id',
+        'payment_status_id',
     ];
 
     protected $appends = [
