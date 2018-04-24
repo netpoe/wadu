@@ -37,4 +37,24 @@ class OrderAdapter extends Order
     {
         return $this->status->id === $statusId;
     }
+
+    public function canBeProcessed()
+    {
+        return in_array($this->status_id, [OrderStatus::STARTED, OrderStatus::PROCESSING]);
+    }
+
+    public function canBeShipped()
+    {
+        return in_array($this->status_id, [OrderStatus::PROCESSING, OrderStatus::READY_TO_SHIP]);
+    }
+
+    public function getCanBeShippedAttribute()
+    {
+        return $this->canBeShipped();
+    }
+
+    public function getCanBeProcessedAttribute()
+    {
+        return $this->canBeProcessed();
+    }
 }

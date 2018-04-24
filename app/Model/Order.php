@@ -32,6 +32,8 @@ class Order extends Model
         'process_route',
         'show_route',
         'ship_route',
+        'can_be_shipped',
+        'can_be_processed',
     ];
 
     public function user()
