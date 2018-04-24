@@ -3,4 +3,12 @@
     @include bold;
     text-transform: uppercase;
   }
+  .header-right {
+    nav {
+      > span,
+      > a {
+        margin-left: get-spacer(1);
+      }
+    }
+  }
 }

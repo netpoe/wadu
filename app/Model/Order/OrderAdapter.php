@@ -2,6 +2,7 @@
 
 namespace App\Model\Order;
 
+use App\Util\NumberUtil;
 use App\Model\{
     Order,
     Order\OrderStatusAdapter as OrderStatus,
@@ -31,6 +32,19 @@ class OrderAdapter extends Order
         }
 
         return $this->products->where('product_id', $product->id)->first();
+    }
+
+    public function getProductsTotal()
+    {
+        $total = 0;
+
+        $this->products->each(function($orderProduct, $key) use (&$total) {
+            $total += $orderProduct->product->price->value * $orderProduct->amount;
+        });
+
+        $total = new NumberUtil($total);
+
+        return $total->toCurrency('Q.');
     }
 
     public function inStatus(Int $statusId)

@@ -4,6 +4,7 @@ namespace App\Model\Product;
 
 use App\Model\Product;
 use Illuminate\Database\Eloquent\Collection;
+use App\Util\NumberUtil;
 
 class ProductAdapter extends Product
 {
@@ -16,5 +17,12 @@ class ProductAdapter extends Product
 
             return [$product->category->value => $product];
         });
+    }
+
+    public function getPrice()
+    {
+        $number = new NumberUtil($this->price->value);
+
+        return $number->toCurrency('Q.');
     }
 }
