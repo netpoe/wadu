@@ -19,7 +19,7 @@
       <div class="col-sm-9"></div>
       <div class="col-sm-3">
         <a href="{{ route('admin.orders.process', ['order' => $order]) }}" class="btn btn-block btn-primary">{{ __('Process order') }}</a>
-        <a href="{{ route('admin.orders.ship', ['order' => $order]) }}" class="btn btn-block btn-success">{{ __('Ship order') }}</a>
+        <a href="{{ route('admin.orders.readyToShip', ['order' => $order]) }}" class="btn btn-block btn-success">{{ __('Ready to ship') }}</a>
       </div>
     </div>
   </div>

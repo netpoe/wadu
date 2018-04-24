@@ -32,7 +32,8 @@
           <td><span v-if="order.processed_by_user_id">{{ order.processor.info.full_name }}</span></td>
           <td>
             <a :href="order.show_route" class="btn btn-sm btn-light">{{ tbody.seeOrder }}</a>
-            <a :href="order.process_route" class="btn btn-sm btn-primary">{{ tbody.processOrder }}</a>
+            <a :href="order.ship_route" class="btn btn-sm btn-primary" v-if="order.status_id === orderStatus['ready_to_ship'][0].id">{{ tbody.shipOrder }}</a>
+            <a :href="order.process_route" class="btn btn-sm btn-primary" v-else>{{ tbody.processOrder }}</a>
           </td>
         </tr>
       </tbody>
@@ -55,8 +56,10 @@
         },
         tbody: {
           seeOrder: '',
-          processOrder: ''
+          processOrder: '',
+          shipOrder: '',
         },
+        orderStatus: {},
         orders: []
       }
     },

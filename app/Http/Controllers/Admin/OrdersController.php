@@ -78,11 +78,22 @@ class OrdersController extends Controller
         return redirect()->route('admin.orders.show', [$order]);
     }
 
+    public function readyToShip(Order $order)
+    {
+        $order->status_id = OrderStatus::READY_TO_SHIP;
+        $order->save();
+
+        $orders = $this->getBusinessOrders();
+        event(new IndexOrdersEvent($orders));
+
+        return redirect()->route('admin.orders.index');
+    }
+
     public function ship(Order $order)
     {
         // TODO una orden no puede ser procesada por un usuario que está atendiendo otra orden
 
-        $order->status_id = OrderStatus::READY_TO_SHIP;
+        $order->status_id = OrderStatus::SHIPPED;
         $order->save();
 
         $orders = $this->getBusinessOrders();

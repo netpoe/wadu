@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){
     Route::get('/admin/orders', 'OrdersController@index')->name('admin.orders.index');
     Route::get('/admin/orders/{order}', 'OrdersController@show')->name('admin.orders.show');
     Route::get('/admin/orders/{order?}/process', 'OrdersController@process')->name('admin.orders.process');
+    Route::get('/admin/orders/{order}/ready-to-ship', 'OrdersController@readyToShip')->name('admin.orders.ready-to-ship');
     Route::get('/admin/orders/{order}/ship', 'OrdersController@ship')->name('admin.orders.ship');
 });
 

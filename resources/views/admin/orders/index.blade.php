@@ -39,6 +39,9 @@
 
       adminOrdersTr.$data.tbody.seeOrder = "{{ __('See order') }}";
       adminOrdersTr.$data.tbody.processOrder = "{{ __('Process order') }}";
+      adminOrdersTr.$data.tbody.shipOrder = "{{ __('Ship order') }}";
+
+      adminOrdersTr.$data.orderStatus = {!! $orders->first()->status->asObjectByValue() !!};
 
       adminOrdersTr.$data.orders = {!! $orders !!};
 

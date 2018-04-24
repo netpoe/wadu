@@ -31,6 +31,7 @@ class Order extends Model
     protected $appends = [
         'process_route',
         'show_route',
+        'ship_route',
     ];
 
     public function user()
@@ -82,5 +83,10 @@ class Order extends Model
     public function getShowRouteAttribute()
     {
         return route('admin.orders.show', ['order' => $this->attributes['id']]);
+    }
+
+    public function getShipRouteAttribute()
+    {
+        return route('admin.orders.ship', ['order' => $this->attributes['id']]);
     }
 }
