@@ -22,6 +22,13 @@
         <p>{{ __('Status') }}: {{ $order->status->description }}</p>
         <p>{{ __('Payment status') }}: {{ $order->paymentStatus->description }}</p>
         <p>{{ __('Payment type') }}: {{ $order->paymentType->description }}</p>
+
+        @if (count($order->products) > 0)
+          <h5>Productos</h5>
+          @foreach($order->products as $orderProduct)
+            <p>{{$orderProduct->amount}} {{ $orderProduct->product->info->name }}</p>
+          @endforeach
+        @endif
       </div>
       <div class="col-sm-3">
         @if ($order->canBeProcessed())

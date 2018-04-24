@@ -9,7 +9,6 @@
           <th>{{ thead.paymentType }}</th>
           <th>{{ thead.paymentStatus }}</th>
           <th>{{ thead.address }}</th>
-          <th>{{ thead.products }}</th>
           <th>{{ thead.processedBy }}</th>
           <td></td>
         </tr>
@@ -26,13 +25,9 @@
               {{order.address.street}}, {{order.address.interior_number}}. {{order.address.city}}, {{order.address.state.name}} - {{order.address.country.name}}
             </span>
           </td>
-          <td>
-            <p v-for="orderProduct in order.products"><span v-if="orderProduct.product.info">{{ orderProduct.product.info.name }}</span></p>
-          </td>
           <td><span v-if="order.processed_by_user_id">{{ order.processor.info.full_name }}</span></td>
           <td>
             <a :href="order.show_route" class="btn btn-sm btn-light">{{ tbody.seeOrder }}</a>
-            <span v-html="orderAction(order)"></span>
           </td>
         </tr>
       </tbody>
@@ -79,18 +74,6 @@
 
         return classes;
       },
-      orderAction(order){
-        switch (order.status.value) {
-          case 'ready_to_ship':
-            return `<a href="${order.ship_route}" class="btn btn-sm btn-primary">${ this.tbody.shipOrder }</a>`;
-            break;
-          case 'shipped':
-            return `<a href="${order.process_route}" class="btn btn-sm btn-primary disabled">${ this.tbody.processOrder }</a>`;
-            break;
-          default:
-            return `<a href="${order.process_route}" class="btn btn-sm btn-primary">${ this.tbody.processOrder }</a>`;
-        }
-      }
     },
   }
   </script>

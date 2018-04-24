@@ -18378,11 +18378,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -18422,18 +18417,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       classes[paymentType + '-' + paymentStatus] = order.payment_type && order.payment_status;
 
       return classes;
-    },
-    orderAction: function orderAction(order) {
-      switch (order.status.value) {
-        case 'ready_to_ship':
-          return '<a href="' + order.ship_route + '" class="btn btn-sm btn-primary">' + this.tbody.shipOrder + '</a>';
-          break;
-        case 'shipped':
-          return '<a href="' + order.process_route + '" class="btn btn-sm btn-primary disabled">' + this.tbody.processOrder + '</a>';
-          break;
-        default:
-          return '<a href="' + order.process_route + '" class="btn btn-sm btn-primary">' + this.tbody.processOrder + '</a>';
-      }
     }
   }
 });
@@ -18461,8 +18444,6 @@ var render = function() {
           _c("th", [_vm._v(_vm._s(_vm.thead.paymentStatus))]),
           _vm._v(" "),
           _c("th", [_vm._v(_vm._s(_vm.thead.address))]),
-          _vm._v(" "),
-          _c("th", [_vm._v(_vm._s(_vm.thead.products))]),
           _vm._v(" "),
           _c("th", [_vm._v(_vm._s(_vm.thead.processedBy))]),
           _vm._v(" "),
@@ -18517,19 +18498,6 @@ var render = function() {
                   : _vm._e()
               ]),
               _vm._v(" "),
-              _c(
-                "td",
-                _vm._l(order.products, function(orderProduct) {
-                  return _c("p", [
-                    orderProduct.product.info
-                      ? _c("span", [
-                          _vm._v(_vm._s(orderProduct.product.info.name))
-                        ])
-                      : _vm._e()
-                  ])
-                })
-              ),
-              _vm._v(" "),
               _c("td", [
                 order.processed_by_user_id
                   ? _c("span", [_vm._v(_vm._s(order.processor.info.full_name))])
@@ -18544,11 +18512,7 @@ var render = function() {
                     attrs: { href: order.show_route }
                   },
                   [_vm._v(_vm._s(_vm.tbody.seeOrder))]
-                ),
-                _vm._v(" "),
-                _c("span", {
-                  domProps: { innerHTML: _vm._s(_vm.orderAction(order)) }
-                })
+                )
               ])
             ]
           )
