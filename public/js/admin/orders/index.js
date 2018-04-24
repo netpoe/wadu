@@ -18383,7 +18383,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -18423,6 +18422,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       classes[paymentType + '-' + paymentStatus] = order.payment_type && order.payment_status;
 
       return classes;
+    },
+    orderAction: function orderAction(order) {
+      switch (order.status.value) {
+        case 'ready_to_ship':
+          return '<a href="' + order.ship_route + '" class="btn btn-sm btn-primary">' + this.tbody.shipOrder + '</a>';
+          break;
+        case 'shipped':
+          return '<a href="' + order.process_route + '" class="btn btn-sm btn-primary disabled">' + this.tbody.processOrder + '</a>';
+          break;
+        default:
+          return '<a href="' + order.process_route + '" class="btn btn-sm btn-primary">' + this.tbody.processOrder + '</a>';
+      }
     }
   }
 });
@@ -18535,23 +18546,9 @@ var render = function() {
                   [_vm._v(_vm._s(_vm.tbody.seeOrder))]
                 ),
                 _vm._v(" "),
-                order.status_id === _vm.orderStatus["ready_to_ship"][0].id
-                  ? _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-sm btn-primary",
-                        attrs: { href: order.ship_route }
-                      },
-                      [_vm._v(_vm._s(_vm.tbody.shipOrder))]
-                    )
-                  : _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-sm btn-primary",
-                        attrs: { href: order.process_route }
-                      },
-                      [_vm._v(_vm._s(_vm.tbody.processOrder))]
-                    )
+                _c("span", {
+                  domProps: { innerHTML: _vm._s(_vm.orderAction(order)) }
+                })
               ])
             ]
           )

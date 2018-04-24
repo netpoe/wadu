@@ -12,6 +12,7 @@ class OrderPaymentType extends Model
 
     const CASH = 1;
     const CARD = 2;
+    const PENDING = 3;
 
     const DATA = [
         self::CASH => [
@@ -23,6 +24,11 @@ class OrderPaymentType extends Model
             'id' => self::CARD,
             'value' => 'card',
             'description' => 'Card',
+        ],
+        self::PENDING => [
+            'id' => self::PENDING,
+            'value' => 'pending',
+            'description' => 'Pending',
         ],
     ];
 }

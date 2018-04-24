@@ -152,6 +152,8 @@ class OrdersController extends Controller
             'business_id' => Auth::user()->business->id,
             'user_id' => $user->id,
             'status_id' => OrderStatus::STARTED,
+            'payment_type_id' => OrderPaymentType::PENDING,
+            'payment_status_id' => OrderPaymentStatus::PENDING,
         ]);
 
         $orders = $this->getBusinessOrders();

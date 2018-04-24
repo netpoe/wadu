@@ -32,8 +32,7 @@
           <td><span v-if="order.processed_by_user_id">{{ order.processor.info.full_name }}</span></td>
           <td>
             <a :href="order.show_route" class="btn btn-sm btn-light">{{ tbody.seeOrder }}</a>
-            <a :href="order.ship_route" class="btn btn-sm btn-primary" v-if="order.status_id === orderStatus['ready_to_ship'][0].id">{{ tbody.shipOrder }}</a>
-            <a :href="order.process_route" class="btn btn-sm btn-primary" v-else>{{ tbody.processOrder }}</a>
+            <span v-html="orderAction(order)"></span>
           </td>
         </tr>
       </tbody>
@@ -79,6 +78,18 @@
         classes[`${paymentType}-${paymentStatus}`] = order.payment_type && order.payment_status;
 
         return classes;
+      },
+      orderAction(order){
+        switch (order.status.value) {
+          case 'ready_to_ship':
+            return `<a href="${order.ship_route}" class="btn btn-sm btn-primary">${ this.tbody.shipOrder }</a>`;
+            break;
+          case 'shipped':
+            return `<a href="${order.process_route}" class="btn btn-sm btn-primary disabled">${ this.tbody.processOrder }</a>`;
+            break;
+          default:
+            return `<a href="${order.process_route}" class="btn btn-sm btn-primary">${ this.tbody.processOrder }</a>`;
+        }
       }
     },
   }
