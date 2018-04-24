@@ -1,0 +1,6 @@
+.header {
+  .business-name {
+    @include bold;
+    text-transform: uppercase;
+  }
+}

@@ -25,10 +25,16 @@ mix.js('resources/js/admin/orders/index.js', 'public/js/admin/orders', {
   .js('resources/js/admin/orders/show.js', 'public/js/admin/orders', {
     includePaths: ['node_modules', 'resources']
   })
+  .js('resources/js/front/menu/index.js', 'public/js/front/menu', {
+    includePaths: ['node_modules', 'resources']
+  })
   .sass('resources/sass/admin/orders/new.scss', 'public/css/admin/orders', {
     includePaths: ['node_modules', 'resources']
   })
   .sass('resources/sass/admin/orders/index.scss', 'public/css/admin/orders', {
+    includePaths: ['node_modules', 'resources']
+  })
+  .sass('resources/sass/front/menu/index.scss', 'public/css/front/menu', {
     includePaths: ['node_modules', 'resources']
   })
   .browserSync({

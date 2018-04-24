@@ -3,13 +3,13 @@
 // SANS-SERIFS
 // @mixin thin { font-family: $font-family-base; font-weight: 100; font-style: normal;}
 // @mixin extra-light { font-family: $font-family-base; font-weight: 200; font-style: normal;}
-// @mixin light { font-family: $font-family-base; font-weight: 300; font-style: normal;}
+@mixin light { font-family: $font-family-base; font-weight: 300; }
 // @mixin light-italic { font-family: $font-family-base; font-weight: 300; font-style: italic;}
-// @mixin book { font-family: $font-family-base; font-weight: 400; font-style: normal;}
+@mixin book { font-family: $font-family-base; font-weight: 400; }
 // @mixin book-italic { font-family: $font-family-base; font-weight: 400; font-style: italic;}
 // @mixin medium { font-family: $font-family-base; font-weight: 500; font-style: normal;}
 // @mixin medium-italic { font-family: $font-family-base; font-weight: 500; font-style: italic;}
-// @mixin bold { font-family: $font-family-base; font-weight: 700; font-style: normal;}
+@mixin bold { font-family: $font-family-base; font-weight: 700; }
 // @mixin bold-italic { font-family: $font-family-base; font-weight: 700; font-style: italic;}
 
 // SERIFS

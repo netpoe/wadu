@@ -1,0 +1,12 @@
+a.btn,
+button.btn,
+input[type="submit"].btn,
+.btn {
+  @include light;
+  text-transform: uppercase;
+  font-size: $font-size-sm;
+  letter-spacing: 0.8px;
+  i {
+    font-weight: bold;
+  }
+}
