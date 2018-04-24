@@ -22,6 +22,9 @@ mix.webpackConfig({
 mix.js('resources/js/admin/orders/index.js', 'public/js/admin/orders', {
     includePaths: ['node_modules', 'resources']
   })
+  .js('resources/js/admin/orders/show.js', 'public/js/admin/orders', {
+    includePaths: ['node_modules', 'resources']
+  })
   .sass('resources/sass/admin/orders/new.scss', 'public/css/admin/orders', {
     includePaths: ['node_modules', 'resources']
   })

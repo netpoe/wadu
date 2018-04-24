@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 35);
+/******/ 	return __webpack_require__(__webpack_require__.s = 42);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -18234,16 +18234,21 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 35 */
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(36);
-__webpack_require__(40);
-module.exports = __webpack_require__(41);
+module.exports = __webpack_require__(43);
 
 
 /***/ }),
-/* 36 */
+/* 43 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18271,27 +18276,27 @@ window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default.a({
     namespace: null
 });
 
-window.AdminOrdersIndex = new Vue({
-    el: '#admin-orders-index',
+window.AdminOrdersShow = new Vue({
+    el: '#admin-orders-show',
     mounted: function mounted() {
         console.log('parent mounted');
     },
 
     components: {
-        'admin-orders-tr': __webpack_require__(37)
+        'admin-orders-show': __webpack_require__(44)
     }
 });
 
 /***/ }),
-/* 37 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(34)
 /* script */
-var __vue_script__ = __webpack_require__(38)
+var __vue_script__ = __webpack_require__(45)
 /* template */
-var __vue_template__ = __webpack_require__(39)
+var __vue_template__ = __webpack_require__(46)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -18308,7 +18313,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/js/admin/orders/index.vue"
+Component.options.__file = "resources/js/admin/orders/show.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -18317,9 +18322,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3c1b76e6", Component.options)
+    hotAPI.createRecord("data-v-5253f319", Component.options)
   } else {
-    hotAPI.reload("data-v-3c1b76e6", Component.options)
+    hotAPI.reload("data-v-5253f319", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -18330,11 +18335,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 38 */
+/* 45 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
 //
 //
 //
@@ -18376,144 +18384,174 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      thead: {
-        user: '',
+      loaded: false,
+      order: {},
+      routes: {
+        ordersIndex: '',
+        ordersProcess: '',
+        ordersReadyToShip: '',
+        ordersShip: ''
+      },
+      messages: {
+        processedBy: '',
         status: '',
-        paymentType: '',
         paymentStatus: '',
-        address: '',
-        products: '',
-        processedBy: ''
-      },
-      tbody: {
-        seeOrder: '',
+        paymentType: '',
         processOrder: '',
+        readyToShip: '',
         shipOrder: ''
-      },
-      orderStatus: {},
-      orders: []
+      }
     };
   },
   mounted: function mounted() {
     console.log('Component mounted.');
   },
 
-  methods: {
-    classBindings: function classBindings(order) {
-      var classes = {};
-
-      var paymentStatus = order.payment_status ? order.payment_status.value : '';
-      classes['payment-status-' + paymentStatus] = order.payment_status != null;
-
-      var paymentType = order.payment_type ? order.payment_type.value : '';
-      classes['payment-type-' + paymentType] = order.payment_type != null;
-
-      classes[paymentType + '-' + paymentStatus] = order.payment_type && order.payment_status;
-
-      return classes;
-    }
-  }
+  methods: {}
 });
 
 /***/ }),
-/* 39 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "table-responsive" }, [
-    _c("table", { staticClass: "table" }, [
-      _c("thead", [
-        _c("tr", [
-          _c("th", [_vm._v("ID")]),
-          _vm._v(" "),
-          _c("th", [_vm._v(_vm._s(_vm.thead.user))]),
-          _vm._v(" "),
-          _c("th", [_vm._v(_vm._s(_vm.thead.status))]),
-          _vm._v(" "),
-          _c("th", [_vm._v(_vm._s(_vm.thead.paymentType))]),
-          _vm._v(" "),
-          _c("th", [_vm._v(_vm._s(_vm.thead.paymentStatus))]),
-          _vm._v(" "),
-          _c("th", [_vm._v(_vm._s(_vm.thead.address))]),
-          _vm._v(" "),
-          _c("th", [_vm._v(_vm._s(_vm.thead.processedBy))]),
-          _vm._v(" "),
-          _c("td")
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.orders, function(order) {
-          return _c(
-            "tr",
-            { staticClass: "order-row", class: _vm.classBindings(order) },
-            [
-              _c("td", [_vm._v(_vm._s(order.id))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(order.user.contact.whatsapp))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(order.status.description))]),
-              _vm._v(" "),
-              _c("td", [
-                order.payment_type
-                  ? _c("span", [_vm._v(_vm._s(order.payment_type.description))])
-                  : _vm._e()
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                order.payment_status
-                  ? _c("span", [
-                      _vm._v(_vm._s(order.payment_status.description))
-                    ])
-                  : _vm._e()
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                order.address
-                  ? _c("span", [
-                      _vm._v(
-                        "\n            " +
-                          _vm._s(order.address.street) +
-                          ", " +
-                          _vm._s(order.address.interior_number) +
-                          ". " +
-                          _vm._s(order.address.city) +
-                          ", " +
-                          _vm._s(order.address.state.name) +
-                          " - " +
-                          _vm._s(order.address.country.name) +
-                          "\n          "
-                      )
-                    ])
-                  : _vm._e()
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                order.processed_by_user_id
-                  ? _c("span", [_vm._v(_vm._s(order.processor.info.full_name))])
-                  : _vm._e()
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _c(
-                  "a",
-                  {
-                    staticClass: "btn btn-sm btn-light",
-                    attrs: { href: order.show_route }
-                  },
-                  [_vm._v(_vm._s(_vm.tbody.seeOrder))]
+  return _vm.loaded
+    ? _c("div", { staticClass: "container" }, [
+        _c("h1", [
+          _c("a", { attrs: { href: _vm.routes.ordersIndex } }, [
+            _c("i", { staticClass: "icon-chevron-left" })
+          ]),
+          _vm._v(" Orden " + _vm._s(_vm.order.id))
+        ]),
+        _vm._v(" "),
+        _vm.order.processor
+          ? _c("div", [
+              _vm.order.processor.info.first_name
+                ? _c("h2", [
+                    _vm._v(
+                      _vm._s(_vm.messages.processedBy) +
+                        ": " +
+                        _vm._s(_vm.order.processor.info.full_name)
+                    )
+                  ])
+                : _c("h2", [
+                    _vm._v(
+                      _vm._s(_vm.messages.processedBy) +
+                        ": " +
+                        _vm._s(_vm.order.processor.email)
+                    )
+                  ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-sm-9" }, [
+            _c("p", [
+              _vm._v(
+                _vm._s(_vm.messages.status) +
+                  ": " +
+                  _vm._s(_vm.order.status.description)
+              )
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                _vm._s(_vm.messages.paymentStatus) +
+                  ": " +
+                  _vm._s(_vm.order.payment_status.description)
+              )
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                _vm._s(_vm.messages.paymentType) +
+                  ": " +
+                  _vm._s(_vm.order.payment_type.description)
+              )
+            ]),
+            _vm._v(" "),
+            _vm.order.address
+              ? _c("div", [
+                  _c("h5", [_vm._v("Enviar a:")]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v(_vm._s(_vm.order.address.to_string))])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.order.products.length > 0
+              ? _c(
+                  "div",
+                  [
+                    _c("h5", [_vm._v("Productos")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.order.products, function(orderProduct) {
+                      return _c("div", [
+                        _c("p", [
+                          _vm._v(
+                            _vm._s(orderProduct.amount) +
+                              " " +
+                              _vm._s(orderProduct.product.info.name)
+                          )
+                        ])
+                      ])
+                    })
+                  ],
+                  2
                 )
-              ])
-            ]
-          )
-        })
-      )
-    ])
-  ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-3" }, [
+            _vm.order.can_be_processed
+              ? _c("div", [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-block btn-primary",
+                      attrs: { href: _vm.routes.ordersProcess }
+                    },
+                    [_vm._v(_vm._s(_vm.messages.processOrder))]
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.order.can_be_shipped
+              ? _c("div", [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-block btn-primary",
+                      attrs: { href: _vm.routes.ordersProcess }
+                    },
+                    [_vm._v(_vm._s(_vm.messages.processOrder))]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-block btn-success",
+                      attrs: { href: _vm.routes.ordersReadyToShip }
+                    },
+                    [_vm._v(_vm._s(_vm.messages.readyToShip))]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-block btn-success",
+                      attrs: { href: _vm.routes.ordersShip }
+                    },
+                    [_vm._v(_vm._s(_vm.messages.shipOrder))]
+                  )
+                ])
+              : _vm._e()
+          ])
+        ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -18521,21 +18559,9 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-3c1b76e6", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-5253f319", module.exports)
   }
 }
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

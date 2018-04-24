@@ -6,6 +6,11 @@ use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Event\{
+    Admin\IndexOrdersEvent,
+    Admin\ShowOrderEvent
+};
+
 use App\Form\Front\OrderShippingForm;
 
 use App\Model\{
@@ -40,6 +45,9 @@ class ShippingController extends Controller
         ])->update([
             'address_id' => $addressId,
         ]);
+
+        event(new IndexOrdersEvent($order->business->getOrders()));
+        event(new ShowOrderEvent($order));
 
         return redirect()->route('front.orders.checkout', ['order' => $order]);
     }

@@ -21,4 +21,18 @@ class BusinessAdapter extends Business
 
         return $order;
     }
+
+    public function getOrders()
+    {
+        $orders = $this
+                    ->orders()
+                    // ->whereNotNull('payment_status_id')
+                    // ->where('payment_type_id', OrderPaymentType::CASH)
+                    ->with(Order::ORDERS_WITH)
+                    ->latest()
+                    ->skip(0)->take(10)
+                    ->get();
+
+        return $orders;
+    }
 }

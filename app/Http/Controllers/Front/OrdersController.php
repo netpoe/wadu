@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Form\Front\OrderShippingForm;
 
+use App\Event\{
+    Admin\IndexOrdersEvent,
+    Admin\ShowOrderEvent
+};
+
 use App\Model\{
     Product\ProductAdapter as Product,
     Order\OrderAdapter as Order,
@@ -48,12 +53,33 @@ class OrdersController extends Controller
         // TODO Check if order has been paid
         // TODO make an state machine for order statuses
 
+        $paymentStatusId = $request->input('payment_status_id');
+        $paymentTypeId = $request->input('payment_type_id');
+
+        $isPendingCash = $paymentStatusId == OrderPaymentStatus::PENDING &&
+                        $paymentTypeId == OrderPaymentType::CASH;
+
+        $isPaid = $paymentStatusId == OrderPaymentStatus::PAID &&
+                    ($paymentTypeId == OrderPaymentType::CARD || $paymentTypeId == OrderPaymentType::CASH);
+
+        $orderCanBeShipped = $isPendingCash || $isPaid;
+
+        if ($orderCanBeShipped && $order->hasAddress() && $order->hasProducts()) {
+            $statusId = OrderStatus::READY_TO_SHIP;
+        } else {
+            $statusId = OrderStatus::STARTED;
+        }
+
         $order->where([
             'id' => $order->id,
         ])->update([
-            'payment_type_id' => $request->input('payment_type_id'),
-            'payment_status_id' => $request->input('payment_status_id'),
+            'status_id' => $statusId,
+            'payment_type_id' => $paymentTypeId,
+            'payment_status_id' => $paymentStatusId,
         ]);
+
+        event(new IndexOrdersEvent($order->business->getOrders()));
+        event(new ShowOrderEvent($order));
 
         // TODO notify business of a requested order
 
@@ -81,6 +107,9 @@ class OrdersController extends Controller
         $orderProduct->where($where)->update([
             'amount' => $orderProduct->amount + 1,
         ]);
+
+        event(new IndexOrdersEvent($order->business->getOrders()));
+        event(new ShowOrderEvent($order));
 
         return redirect()->route('front.menu.index', [
             'businessSlug' => $order->business->slug,

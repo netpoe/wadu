@@ -1,6 +1,9 @@
 <?php
 
-use App\Broadcasting\Admin\OrdersChannel;
+use App\Broadcasting\{
+    Admin\OrdersIndexChannel,
+    Admin\OrderShowChannel
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -13,4 +16,5 @@ use App\Broadcasting\Admin\OrdersChannel;
 |
 */
 
-Broadcast::channel('orders.{business}', OrdersChannel::class);
+Broadcast::channel('orders.{business}', OrdersIndexChannel::class);
+Broadcast::channel('order.{order}.business.{business}', OrderShowChannel::class);

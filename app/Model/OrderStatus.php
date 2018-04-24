@@ -53,6 +53,6 @@ class OrderStatus extends Model
             'id' => self::READY_TO_SHIP,
             'value' => 'ready_to_ship',
             'description' => 'Ready to ship',
-        ],
+        ]
     ];
 }

@@ -19,12 +19,12 @@ window.Echo = new Echo({
     namespace: null
 });
 
-window.AdminOrdersIndex = new Vue({
-    el: '#admin-orders-index',
+window.AdminOrdersShow = new Vue({
+    el: '#admin-orders-show',
     mounted() {
       console.log('parent mounted');
     },
     components: {
-      'admin-orders-tr': require('./index.vue')
+      'admin-orders-show': require('./show.vue')
     },
 });

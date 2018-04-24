@@ -27,6 +27,10 @@ class UserAddress extends Model
         'zip_code'
     ];
 
+    protected $appends = [
+        'to_string',
+    ];
+
     public function country()
     {
         return $this->belongsTo(AddressCountry::class, 'country_id', 'id');
@@ -40,5 +44,10 @@ class UserAddress extends Model
     public function getInteriorNumberAttribute($value)
     {
         return "int $value";
+    }
+
+    public function getToStringAttribute()
+    {
+        return "{$this->street}, {$this->interior_number}. {$this->city}, {$this->state->name} - {$this->country->name}";
     }
 }

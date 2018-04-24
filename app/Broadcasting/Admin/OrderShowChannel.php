@@ -2,11 +2,13 @@
 
 namespace App\Broadcasting\Admin;
 
-use Auth;
-use App\Model\Business\BusinessAdapter as Business;
 use App\User;
+use App\Model\{
+    Business\BusinessAdapter as Business,
+    Order\OrderAdapter as Order
+};
 
-class OrdersChannel
+class OrderShowChannel
 {
     /**
      * Create a new channel instance.
@@ -24,8 +26,8 @@ class OrdersChannel
      * @param  \App\User  $user
      * @return array|bool
      */
-    public function join(User $user, Business $business)
+    public function join(User $user, Order $order, Business $business)
     {
-        return Auth::user()->business->id === $business->id;
+        return $user->business->id === $business->id;
     }
 }

@@ -6,41 +6,45 @@
 
 @section('content')
 
-<section class="section hero" id="admin-orders-index">
-  <div class="container">
-    <h1><a href="{{ route('admin.orders.index') }}"><i class="icon-chevron-left"></i></a> Orden {{ $order->id }}</h1>
-    @if ($order->processor)
-      @if ($order->processor->info->first_name)
-        <h2>{{ __('This order is being processed by') }}: {{ $order->processor->info->fullName() }}</h2>
-      @else
-        <h2>{{ __('This order is being processed by') }}: {{ $order->processor->email }}</h2>
-      @endif
-    @endif
-
-    <div class="row">
-      <div class="col-sm-9">
-        <p>{{ __('Status') }}: {{ $order->status->description }}</p>
-        <p>{{ __('Payment status') }}: {{ $order->paymentStatus->description }}</p>
-        <p>{{ __('Payment type') }}: {{ $order->paymentType->description }}</p>
-
-        @if (count($order->products) > 0)
-          <h5>Productos</h5>
-          @foreach($order->products as $orderProduct)
-            <p>{{$orderProduct->amount}} {{ $orderProduct->product->info->name }}</p>
-          @endforeach
-        @endif
-      </div>
-      <div class="col-sm-3">
-        @if ($order->canBeProcessed())
-          <a href="{{ route('admin.orders.process', ['order' => $order]) }}" class="btn btn-block btn-primary">{{ __('Process order') }}</a>
-        @endif
-        @if ($order->canBeShipped())
-          <a href="{{ route('admin.orders.ready-to-ship', ['order' => $order]) }}" class="btn btn-block btn-success">{{ __('Ready to ship') }}</a>
-          <a href="{{ route('admin.orders.ship', ['order' => $order]) }}" class="btn btn-block btn-success">{{ __('Ship order') }}</a>
-        @endif
-      </div>
-    </div>
-  </div>
+<section class="section hero" id="admin-orders-show">
+  <admin-orders-show ref="adminOrdersShow"></admin-orders-show>
 </section>
 
 @endsection
+
+@push('footer-scripts')
+  <script src="{{ asset('js/admin/orders/show.js') }}"></script>
+  <script>
+    (function(global){
+      var adminOrdersShow = AdminOrdersShow.$refs.adminOrdersShow;
+
+      console.log({!! $order !!});
+      adminOrdersShow.$data.order = {!! $order !!};
+
+      adminOrdersShow.$data.routes.ordersIndex = "{{ route('admin.orders.index') }}";
+      adminOrdersShow.$data.routes.ordersProcess = "{{ route('admin.orders.process', ['order' => $order]) }}";
+      adminOrdersShow.$data.routes.ordersReadyToShip = "{{ route('admin.orders.ready-to-ship', ['order' => $order]) }}";
+      adminOrdersShow.$data.routes.ordersShip = "{{ route('admin.orders.ship', ['order' => $order]) }}";
+
+      adminOrdersShow.$data.messages.processedBy = "{{ __('This order is being processed by') }}";
+      adminOrdersShow.$data.messages.processOrder = "{{ __('Process order') }}";
+      adminOrdersShow.$data.messages.status = "{{ __('Status') }}";
+      adminOrdersShow.$data.messages.paymentStatus = "{{ __('Payment status') }}";
+      adminOrdersShow.$data.messages.paymentType = "{{ __('Payment type') }}";
+      adminOrdersShow.$data.messages.readyToShip = "{{ __('Ready to ship') }}";
+      adminOrdersShow.$data.messages.shipOrder = "{{ __('Ship order') }}";
+
+      adminOrdersShow.$data.loaded = true;
+
+      Echo.private('order.' + {{ $order->id }} + '.business.' + {{ $order->business->id }})
+          .listen('.show.order.event', (data) => {
+            console.log(data);
+            adminOrdersShow.$data.order = data.order;
+          });
+    })(window);
+  </script>
+@endpush
+
+
+
+

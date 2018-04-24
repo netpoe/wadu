@@ -8,7 +8,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Form\Admin\NewOrderForm;
 use App\Service\WhatsAppService;
-use App\Event\Admin\IndexOrdersEvent;
+
+use App\Event\{
+    Admin\IndexOrdersEvent,
+    Admin\ShowOrderEvent
+};
 
 use App\Util\{
     WhatsAppNumberProcessor,
@@ -26,23 +30,9 @@ use App\Model\{
 
 class OrdersController extends Controller
 {
-    private function getBusinessOrders()
-    {
-        $orders = Auth::user()
-                    ->business
-                    ->orders()
-                    // ->whereNotNull('payment_status_id')
-                    // ->where('payment_type_id', OrderPaymentType::CASH)
-                    ->with(Order::ORDERS_WITH)
-                    ->latest()
-                    ->skip(0)->take(10)
-                    ->get();
-
-        return $orders;
-    }
-
     public function index() {
-        $orders = $this->getBusinessOrders();
+
+        $orders = Auth::user()->business->getOrders();
 
         return view('admin.orders.index', [
             'orders' => $orders
@@ -61,7 +51,7 @@ class OrdersController extends Controller
     public function show(Order $order)
     {
         return view('admin.orders.show', [
-            'order' => $order
+            'order' => Order::with(Order::ORDERS_WITH)->find($order->id)
         ]);
     }
 
@@ -72,8 +62,8 @@ class OrdersController extends Controller
         $order->processed_by_user_id = Auth::id();
         $order->save();
 
-        $orders = $this->getBusinessOrders();
-        event(new IndexOrdersEvent($orders));
+        event(new IndexOrdersEvent($order->business->getOrders()));
+        event(new ShowOrderEvent($order));
 
         return redirect()->route('admin.orders.show', [$order]);
     }
@@ -83,8 +73,8 @@ class OrdersController extends Controller
         $order->status_id = OrderStatus::READY_TO_SHIP;
         $order->save();
 
-        $orders = $this->getBusinessOrders();
-        event(new IndexOrdersEvent($orders));
+        event(new IndexOrdersEvent($order->business->getOrders()));
+        event(new ShowOrderEvent($order));
 
         return redirect()->route('admin.orders.index');
     }
@@ -96,8 +86,8 @@ class OrdersController extends Controller
         $order->status_id = OrderStatus::SHIPPED;
         $order->save();
 
-        $orders = $this->getBusinessOrders();
-        event(new IndexOrdersEvent($orders));
+        event(new IndexOrdersEvent($order->business->getOrders()));
+        event(new ShowOrderEvent($order));
 
         return redirect()->route('admin.orders.index');
     }
@@ -156,9 +146,8 @@ class OrdersController extends Controller
             'payment_status_id' => OrderPaymentStatus::PENDING,
         ]);
 
-        $orders = $this->getBusinessOrders();
-
-        event(new IndexOrdersEvent($orders));
+        event(new IndexOrdersEvent($order->business->getOrders()));
+        event(new ShowOrderEvent($order));
 
         return redirect()->route('admin.orders.greet', [$order]);
     }
