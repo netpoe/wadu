@@ -1,4 +1,12 @@
 .header {
+  .header-left,
+  .header-center,
+  .header-right {
+    min-height: $header-height-control;
+    padding-bottom: 14px;
+    padding-top: 14px;
+    height: initial;
+  }
   .business-name {
     @include bold;
     text-transform: uppercase;

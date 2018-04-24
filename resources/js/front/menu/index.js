@@ -75,4 +75,8 @@ var stickyHeaders = (function() {
 
 $(function() {
   stickyHeaders.load($('.follow-me-bar'));
+
+  $('.product').on('click', '.left', function(e){
+    $(this).parents('.product').find('.bottom').toggleClass('d-none');
+  });
 });

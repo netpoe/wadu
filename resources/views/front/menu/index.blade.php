@@ -36,9 +36,11 @@
             <div class="row">
               <div class="col-8 left">
                 <h5 class="name">{{ $product->info->name }}</h5>
-                <span class="price">{{ $product->getPrice() }}</span>
-                <span> x </span>
-                <span class="count">@if($order->product($product)){{ $order->product($product)->amount }}@else 0 @endif</span>
+                <div class="price-count">
+                  <span class="price">{{ $product->getPrice() }}</span>
+                  <span class="times"> x </span>
+                  <span class="count">@if($order->product($product)){{ $order->product($product)->amount }}@else 0 @endif</span>
+                </div>
               </div>
               <div class="col-4 right">
                 <div class="row no-gutters text-right">
@@ -62,7 +64,7 @@
               </div>
             </div>
           </div>
-          <div class="bottom" style="display: none">
+          <div class="bottom d-none">
             <p class="description">{{ $product->info->description }}</p>
           </div>
         </div>
