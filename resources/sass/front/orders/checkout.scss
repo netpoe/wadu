@@ -12,6 +12,7 @@
 @import "node_modules/bootstrap/scss/input-group";
 @import "node_modules/bootstrap/scss/buttons";
 @import "node_modules/bootstrap/scss/utilities";
+@import "node_modules/bootstrap/scss/card";
 
 @import "node_modules/bourbon/app/assets/stylesheets/bourbon";
 
@@ -32,10 +33,19 @@
 @import "resources/sass/common/buttons";
 @import "resources/sass/common/header";
 @import "resources/sass/common/follow-me-bar";
+@import "resources/sass/common/forms";
 @import "resources/sass/common/product";
 
-#front-menu-index {
-
+#front-orders-checkout {
+  &.hero {
+  }
+  .products {
+    // padding: get-spacer(3) 0;
+  }
+  .details,
+  .address {
+    padding: get-spacer(3) 0;
+  }
 }
 
 /*

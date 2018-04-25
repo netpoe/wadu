@@ -1,0 +1,26 @@
+.product {
+  border-bottom: 1px solid $gray-100;
+  padding: get-spacer(3) 0;
+  background-color: white;
+  .price-count {
+    @include bold;
+  }
+  .top {
+    .category {
+      text-transform: capitalize;
+      color: $text-muted;
+    }
+    .left {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .right {
+      // @include flex-row;
+    }
+  }
+  .bottom {
+    padding-top: get-spacer(2);
+    color: $gray-500;
+  }
+}

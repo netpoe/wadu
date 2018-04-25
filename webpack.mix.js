@@ -40,6 +40,9 @@ mix.js('resources/js/admin/orders/index.js', 'public/js/admin/orders', {
   .sass('resources/sass/front/orders/shipping.scss', 'public/css/front/orders', {
     includePaths: ['node_modules', 'resources']
   })
+  .sass('resources/sass/front/orders/checkout.scss', 'public/css/front/orders', {
+    includePaths: ['node_modules', 'resources']
+  })
   .browserSync({
     proxy: 'localhost:8000'
   });

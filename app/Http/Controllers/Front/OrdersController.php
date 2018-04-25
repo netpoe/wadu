@@ -40,8 +40,13 @@ class OrdersController extends Controller
 
     public function checkout(Order $order)
     {
+        $orderProducts = $order->products->sortByDesc(function($orderProduct, $key){
+            return $orderProduct->product->product_category_id;
+        });
+
         return view('front.orders.checkout', [
             'order' => $order,
+            'orderProducts' => $orderProducts,
             'orderStatus' => new OrderStatus,
             'orderPaymentType' => new OrderPaymentType,
             'orderPaymentStatus' => new OrderPaymentStatus,
