@@ -11,8 +11,9 @@
     @stack('head-links')
   </head>
   <body>
-    <div class="site-wrapper" id="site-wrapper">
+    @stack('body')
 
+    <div class="site-wrapper" id="site-wrapper">
       <header class="header">
         <div class="container">
           <div class="row">

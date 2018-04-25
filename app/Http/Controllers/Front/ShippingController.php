@@ -31,7 +31,8 @@ class ShippingController extends Controller
             $form->getValidationMessages());
 
         if ($validator->fails()) {
-            return redirect('front.orders.shipping')
+            return redirect()
+                    ->route('front.orders.shipping', ['order' => $order->id])
                     ->withErrors($validator)
                     ->withInput();
         }
@@ -46,8 +47,10 @@ class ShippingController extends Controller
             'address_id' => $addressId,
         ]);
 
-        event(new IndexOrdersEvent($order->business->getOrders()));
-        event(new ShowOrderEvent($order));
+        try {
+            event(new IndexOrdersEvent($order->business->getOrders()));
+            event(new ShowOrderEvent($order));
+        } catch (\Exception $e) {}
 
         return redirect()->route('front.orders.checkout', ['order' => $order]);
     }

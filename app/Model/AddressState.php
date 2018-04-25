@@ -28,7 +28,6 @@ class AddressState extends Model implements DictionaryContract
 
     const DATA = [
         AddressCountry::GUATEMALA => [
-            'id' => 1,
             'name' => 'Guatemala City',
             'country_id' => AddressCountry::GUATEMALA,
         ]

@@ -2,7 +2,7 @@
   $name = $field->getAlias();
 ?>
 
-<fieldset class="form-group {{ $errors->has($name) ? 'has-danger' : '' }}">
+<fieldset class="form-group">
   <label for="{{ $name }}">{{ $field->getLabel() }}</label>
   <select
     id="{{ $name }}"
@@ -11,7 +11,7 @@
     placeholder="{{ $field->getPlaceholder() }}"
     {{ $field->isRequired() ? 'required' : '' }}
     {{ isset($autofocus) && $autofocus ? 'autofocus' : '' }}
-    class="{{ $field->getClass() }}"
+    class="{{ $field->getClass() }} {{ $errors->has($name) ? 'is-invalid' : '' }}"
     value="{{ old($name) ? old($name) : $field->getValue() }}">
     @foreach ($field->getOptions() as $option)
       <option
@@ -21,7 +21,7 @@
     @endforeach
   </select>
   @if ($errors->has($name))
-    <span class="help-block">
+    <span class="invalid-feedback">
       <strong>{{ $errors->first($name) }}</strong>
     </span>
   @endif

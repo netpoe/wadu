@@ -32,8 +32,12 @@
 @import "resources/sass/common/buttons";
 @import "resources/sass/common/header";
 @import "resources/sass/common/follow-me-bar";
+@import "resources/sass/common/forms";
 
 #front-orders-shipping {
+  &.hero {
+    background-color: white;
+  }
   .fields {
     padding: get-spacer(3) 0;
   }

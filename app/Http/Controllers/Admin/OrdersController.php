@@ -62,8 +62,10 @@ class OrdersController extends Controller
         $order->processed_by_user_id = Auth::id();
         $order->save();
 
-        event(new IndexOrdersEvent($order->business->getOrders()));
-        event(new ShowOrderEvent($order));
+        try {
+            event(new IndexOrdersEvent($order->business->getOrders()));
+            event(new ShowOrderEvent($order));
+        } catch (\Exception $e) {}
 
         return redirect()->route('admin.orders.show', [$order]);
     }
@@ -73,8 +75,10 @@ class OrdersController extends Controller
         $order->status_id = OrderStatus::READY_TO_SHIP;
         $order->save();
 
-        event(new IndexOrdersEvent($order->business->getOrders()));
-        event(new ShowOrderEvent($order));
+        try {
+            event(new IndexOrdersEvent($order->business->getOrders()));
+            event(new ShowOrderEvent($order));
+        } catch (\Exception $e) {}
 
         return redirect()->route('admin.orders.index');
     }
@@ -86,8 +90,10 @@ class OrdersController extends Controller
         $order->status_id = OrderStatus::SHIPPED;
         $order->save();
 
-        event(new IndexOrdersEvent($order->business->getOrders()));
-        event(new ShowOrderEvent($order));
+        try {
+            event(new IndexOrdersEvent($order->business->getOrders()));
+            event(new ShowOrderEvent($order));
+        } catch (\Exception $e) {}
 
         return redirect()->route('admin.orders.index');
     }
@@ -146,8 +152,10 @@ class OrdersController extends Controller
             'payment_status_id' => OrderPaymentStatus::PENDING,
         ]);
 
-        event(new IndexOrdersEvent($order->business->getOrders()));
-        event(new ShowOrderEvent($order));
+        try {
+            event(new IndexOrdersEvent($order->business->getOrders()));
+            event(new ShowOrderEvent($order));
+        } catch (\Exception $e) {}
 
         return redirect()->route('admin.orders.greet', [$order]);
     }

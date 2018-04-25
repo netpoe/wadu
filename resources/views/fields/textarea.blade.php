@@ -2,7 +2,7 @@
   $name = $field->getAlias();
 ?>
 
-<fieldset class="form-group {{ $errors->has($name) ? ' has-danger' : '' }}">
+<fieldset class="form-group">
   <label for="{{ $name }}">{{ $field->getLabel() }}</label>
   <textarea
     name="{{ $name }}"
@@ -10,9 +10,9 @@
     placeholder="{{ $field->getPlaceholder() }}"
     {{ $field->isRequired() ? 'required' : '' }}
     {{ isset($autofocus) && $autofocus ? 'autofocus' : '' }}
-    class="{{ $field->getClass() }}">{{ old($name) ? old($name) : $field->getValue() }}</textarea>
+    class="{{ $field->getClass() }} {{ $errors->has($name) ? 'is-invalid' : '' }}">{{ old($name) ? old($name) : $field->getValue() }}</textarea>
   @if ($errors->has($name))
-    <span class="help-block">
+    <span class="invalid-feedback">
       <strong>{{ $errors->first($name) }}</strong>
     </span>
   @else

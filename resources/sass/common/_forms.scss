@@ -1,0 +1,7 @@
+.form-group {
+  label {
+    @include bold;
+    text-transform: uppercase;
+    color: $gray-600;
+  }
+}
