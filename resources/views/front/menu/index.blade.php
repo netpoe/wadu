@@ -1,28 +1,23 @@
-@extends('layouts.admin')
+@extends('layouts.front')
 
 @push('head-links')
 <link rel="stylesheet" href="{{ asset('css/front/menu/index.css') }}">
 @endpush
 
+@push('header-left')
+  <span class="business-name">{{ $business->name }}</span>
+@endpush
+
+@push('header-right')
+  <nav>
+    <span>{{ $order->getProductsTotal() }}</span>
+    <a href="{{ route('front.orders.shipping', ['order' => $order->id]) }}" class="btn btn-primary btn-sm"><i class="icon-chevron-right"></i></a>
+  </nav>
+@endpush
+
 @section('content')
 
 <section class="section hero" id="front-menu-index">
-  <header class="header">
-    <div class="container">
-      <div class="row">
-        <div class="col header-left">
-          <span class="business-name">{{ $business->name }}</span>
-        </div>
-        <div class="col header-right">
-          <nav>
-            <span>{{ $order->getProductsTotal() }}</span>
-            <a href="{{ route('front.orders.shipping', ['order' => $order->id]) }}" class="btn btn-primary btn-sm"><i class="icon-chevron-right"></i></a>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </header>
-
   @foreach ($productsByCategory as $name => $category)
     <div class="follow-me-bar">
       <div class="container">

@@ -1,8 +1,9 @@
 {
     "/js/admin/orders/index.js": "/js/admin/orders/index.js",
-    "/js/admin/orders/show.js": "/js/admin/orders/show.js",
-    "/js/front/menu/index.js": "/js/front/menu/index.js",
-    "/css/front/menu/index.css": "/css/front/menu/index.css",
     "/css/admin/orders/new.css": "/css/admin/orders/new.css",
-    "/css/admin/orders/index.css": "/css/admin/orders/index.css"
+    "/css/admin/orders/index.css": "/css/admin/orders/index.css",
+    "/css/front/menu/index.css": "/css/front/menu/index.css",
+    "/css/front/orders/shipping.css": "/css/front/orders/shipping.css",
+    "/js/admin/orders/show.js": "/js/admin/orders/show.js",
+    "/js/front/menu/index.js": "/js/front/menu/index.js"
 }

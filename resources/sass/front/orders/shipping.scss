@@ -33,24 +33,9 @@
 @import "resources/sass/common/header";
 @import "resources/sass/common/follow-me-bar";
 
-#front-menu-index {
-  .product {
-    border-bottom: 1px solid $gray-100;
+#front-orders-shipping {
+  .fields {
     padding: get-spacer(3) 0;
-    background-color: white;
-    .price-count {
-      @include bold;
-    }
-    .top {
-      .left {}
-      .right {
-        // @include flex-row;
-      }
-    }
-    .bottom {
-      padding-top: get-spacer(2);
-      color: $gray-500;
-    }
   }
 }
 

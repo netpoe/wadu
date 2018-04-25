@@ -1,0 +1,22 @@
+.follow-wrap {
+}
+
+.follow-me-bar {
+  border-bottom: 1px solid $gray-300;
+  border-top: 1px solid $gray-300;
+  background-color: $gray-100;
+  padding: get-spacer(1) 0;
+  position: relative;
+  color: $gray-900;
+  z-index: 1;
+  &.fixed {
+    box-sizing: border-box;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    top: 0;
+    &.absolute {
+      position: absolute;
+    }
+  }
+}
