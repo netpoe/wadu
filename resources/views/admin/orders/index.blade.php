@@ -48,8 +48,19 @@
       Echo.private('orders.' + {{ $orders->first()->business->id }})
           .listen('.index.orders.event', (data) => {
             console.log(data);
-            adminOrdersTr.$data.orders = data.orders;
+            // adminOrdersTr.$data.orders = data.orders;
+
+            getOrders();
           });
+
+      function getOrders(){
+        axios.get("{{ route('api.orders.index') }}", {}).then(function(response){
+          console.log(response);
+          adminOrdersTr.$data.orders = response.data;
+        }).catch(function(error){
+          console.log(error);
+        });
+      }
 
     })(window)
   </script>

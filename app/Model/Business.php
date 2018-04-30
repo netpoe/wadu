@@ -19,7 +19,7 @@ class Business extends Model
     protected $fillable = [
         'name',
         'slug',
-        'user_id'
+        'created_by',
     ];
 
     public function products()
