@@ -12736,8 +12736,14 @@ input[type="submit"].btn i,
 }
 
 #front-orders-checkout .details,
-#front-orders-checkout .address {
+#front-orders-checkout .address,
+#front-orders-checkout .total {
   padding: 1rem 0;
+}
+
+#front-orders-checkout .total .category {
+  text-transform: capitalize;
+  color: #6c757d;
 }
 
 /*

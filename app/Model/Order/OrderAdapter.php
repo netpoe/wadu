@@ -25,6 +25,8 @@ class OrderAdapter extends Order
                         'products.product',
                         'products.product.info'];
 
+    public $defaultCurrencySymbol = 'Q.';
+
     public function product(Product $product)
     {
         if ($this->products->isEmpty()) {
@@ -34,7 +36,7 @@ class OrderAdapter extends Order
         return $this->products->where('product_id', $product->id)->first();
     }
 
-    public function getProductsTotal()
+    public function getSubtotal()
     {
         $total = 0;
 
@@ -44,7 +46,40 @@ class OrderAdapter extends Order
 
         $total = new NumberUtil($total);
 
-        return $total->toCurrency('Q.');
+        return $total;
+    }
+
+    public function getShippingCost()
+    {
+        return new NumberUtil(18.00);
+    }
+
+    public function getTaxes()
+    {
+        $tax = 0.12;
+
+        // TODO add tax groups in business settings
+
+        $subtotal = $this->getSubtotal()->raw();
+
+        $shipping = $this->getShippingCost()->raw();
+
+        $taxes = ($subtotal + $shipping) * $tax;
+
+        return new NumberUtil($taxes);
+    }
+
+    public function getTotal()
+    {
+        $subtotal = $this->getSubtotal()->raw();
+
+        $shipping = $this->getShippingCost()->raw();
+
+        $taxes = $this->getTaxes()->raw();
+
+        $total = $subtotal + $shipping + $taxes;
+
+        return new NumberUtil($total);
     }
 
     public function inStatus(Int $statusId)

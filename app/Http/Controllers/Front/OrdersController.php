@@ -83,8 +83,10 @@ class OrdersController extends Controller
             'payment_status_id' => $paymentStatusId,
         ]);
 
-        event(new IndexOrdersEvent($order->business->getOrders()));
-        event(new ShowOrderEvent($order));
+        try {
+            event(new IndexOrdersEvent($order->business->getOrders()));
+            event(new ShowOrderEvent($order));
+        } catch (\Exception $e) {}
 
         // TODO notify business of a requested order
 
@@ -113,8 +115,10 @@ class OrdersController extends Controller
             'amount' => $orderProduct->amount + 1,
         ]);
 
-        event(new IndexOrdersEvent($order->business->getOrders()));
-        event(new ShowOrderEvent($order));
+        try {
+            event(new IndexOrdersEvent($order->business->getOrders()));
+            event(new ShowOrderEvent($order));
+        } catch (\Exception $e) {}
 
         return redirect()->route('front.menu.index', [
             'businessSlug' => $order->business->slug,

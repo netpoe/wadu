@@ -15,7 +15,7 @@
 
 @push('header-right')
   <nav>
-    <span>{{ $order->getProductsTotal() }}</span>
+    <span>{{ $order->getSubtotal()->toCurrency($order->defaultCurrencySymbol) }}</span>
     <button type="submit" class="btn btn-sm btn-primary"><i class="icon-chevron-right"></i></a>
   </nav>
 @endpush
@@ -24,7 +24,7 @@
   <section class="section hero" id="front-orders-shipping">
     <div class="follow-me-bar">
       <div class="container">
-        <span>¿A dónde enviamos tu orden?</span>
+        <span>{{ __('Add your shipping address') }}</span>
       </div>
     </div>
     <div class="container">

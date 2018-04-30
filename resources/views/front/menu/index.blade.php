@@ -10,7 +10,7 @@
 
 @push('header-right')
   <nav>
-    <span>{{ $order->getProductsTotal() }}</span>
+    <span>{{ $order->getSubtotal()->toCurrency($order->defaultCurrencySymbol) }}</span>
     <a href="{{ route('front.orders.shipping', ['order' => $order->id]) }}" class="btn btn-primary btn-sm"><i class="icon-chevron-right"></i></a>
   </nav>
 @endpush

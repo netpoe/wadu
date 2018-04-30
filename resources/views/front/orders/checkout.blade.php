@@ -8,26 +8,19 @@
   <span class="business-name">{{ $order->business->name }}</span>
 @endpush
 
-@push('header-right')
-  <nav>
-    <span>{{ $order->getProductsTotal() }}</span>
-    <button type="submit" class="btn btn-sm btn-primary"><i class="icon-chevron-right"></i></a>
-  </nav>
-@endpush
-
 @section('content')
 
 <section class="section hero" id="front-orders-checkout">
   <div class="follow-me-bar">
     <div class="container">
-      <span>Confirma tu orden</span>
+      <span>{{ __('Confirm your order') }}</span>
     </div>
   </div>
   <div class="container">
     <div class="address">
       <article class="card">
         <div class="card-body">
-          <h5 class="card-title">Enviaremos tu orden a</h5>
+          <h5 class="card-title">{{ __("We'll send your order to") }}</h5>
           <p class="card-text">{{ $order->address->asString() }}</p>
           @isset($order->address->references)
             <h6 class="card-subtitle text-muted">Cómo llegar</h6>
@@ -40,7 +33,7 @@
 
   <div class="follow-me-bar">
     <div class="container">
-      <span>Productos</span>
+      <span>{{ __('Products') }}</span>
     </div>
   </div>
 
@@ -69,7 +62,30 @@
 
   <div class="follow-me-bar">
     <div class="container">
-      <span>Elige tu medio de pago</span>
+      <span>{{ __('Total') }}</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="total">
+      <article class="card">
+        <div class="card-body">
+          <h6 class="category">{{ __('Subtotal') }}</h6>
+          <p class="concept">{{ $order->getSubtotal()->toCurrency($order->defaultCurrencySymbol) }}</p>
+          <h6 class="category">{{ __('Shipping') }}</h6>
+          <p class="concept">{{ $order->getShippingCost()->toCurrency($order->defaultCurrencySymbol) }}</p>
+          <h6 class="category">{{ __('Taxes') }}</h6>
+          <p class="concept">{{ $order->getTaxes()->toCurrency($order->defaultCurrencySymbol) }}</p>
+          <h6 class="category">{{ __('Total') }}</h6>
+          <p class="concept">{{ $order->getTotal()->toCurrency($order->defaultCurrencySymbol) }}</p>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <div class="follow-me-bar">
+    <div class="container">
+      <span>{{ __('Choose your payment type') }}</span>
     </div>
   </div>
 

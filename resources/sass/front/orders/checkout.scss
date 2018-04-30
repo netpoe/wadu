@@ -43,8 +43,15 @@
     // padding: get-spacer(3) 0;
   }
   .details,
-  .address {
+  .address,
+  .total {
     padding: get-spacer(3) 0;
+  }
+  .total {
+    .category {
+      text-transform: capitalize;
+      color: $text-muted;
+    }
   }
 }
 
