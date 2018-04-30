@@ -18378,20 +18378,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      thead: {
+      messages: {
+        order: '',
+        actions: '',
         user: '',
         status: '',
         paymentType: '',
         paymentStatus: '',
         address: '',
         products: '',
-        processedBy: ''
-      },
-      tbody: {
+        processedBy: '',
         seeOrder: '',
         processOrder: '',
         shipOrder: ''
@@ -18429,97 +18444,96 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "table-responsive" }, [
-    _c("table", { staticClass: "table" }, [
-      _c("thead", [
-        _c("tr", [
-          _c("th", [_vm._v("ID")]),
-          _vm._v(" "),
-          _c("th", [_vm._v(_vm._s(_vm.thead.user))]),
-          _vm._v(" "),
-          _c("th", [_vm._v(_vm._s(_vm.thead.status))]),
-          _vm._v(" "),
-          _c("th", [_vm._v(_vm._s(_vm.thead.paymentType))]),
-          _vm._v(" "),
-          _c("th", [_vm._v(_vm._s(_vm.thead.paymentStatus))]),
-          _vm._v(" "),
-          _c("th", [_vm._v(_vm._s(_vm.thead.address))]),
-          _vm._v(" "),
-          _c("th", [_vm._v(_vm._s(_vm.thead.processedBy))]),
-          _vm._v(" "),
-          _c("td")
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.orders, function(order) {
-          return _c(
-            "tr",
-            { staticClass: "order-row", class: _vm.classBindings(order) },
-            [
-              _c("td", [_vm._v(_vm._s(order.id))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(order.user.contact.whatsapp))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(order.status.description))]),
-              _vm._v(" "),
-              _c("td", [
-                order.payment_type
-                  ? _c("span", [_vm._v(_vm._s(order.payment_type.description))])
-                  : _vm._e()
+  return _c(
+    "div",
+    { staticClass: "orders-index" },
+    _vm._l(_vm.orders, function(order) {
+      return _c(
+        "article",
+        { staticClass: "order", class: _vm.classBindings(order) },
+        [
+          _c("div", { staticClass: "row no-gutters" }, [
+            _c("div", { staticClass: "col-8 left" }, [
+              _c("div", { staticClass: "top" }, [
+                _c("a", { attrs: { href: order.show_route } }, [
+                  _c("div", { staticClass: "id" }, [
+                    _c("small", [_vm._v(_vm._s(_vm.messages.order))]),
+                    _vm._v(" "),
+                    _c("span", [_vm._v(_vm._s(order.id))])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "status" }, [
+                    _c("small", [_vm._v(_vm._s(_vm.messages.status))]),
+                    _vm._v(" "),
+                    _c("span", [_vm._v(_vm._s(order.status.description))])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "payment-status" }, [
+                    _c("small", [_vm._v(_vm._s(_vm.messages.paymentStatus))]),
+                    _vm._v(" "),
+                    order.payment_status
+                      ? _c("span", [
+                          _vm._v(_vm._s(order.payment_status.description))
+                        ])
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "payment-type" }, [
+                    _c("small", [_vm._v(_vm._s(_vm.messages.paymentType))]),
+                    _vm._v(" "),
+                    order.payment_type
+                      ? _c("span", [
+                          _vm._v(_vm._s(order.payment_type.description))
+                        ])
+                      : _vm._e()
+                  ])
+                ])
               ]),
               _vm._v(" "),
-              _c("td", [
-                order.payment_status
-                  ? _c("span", [
-                      _vm._v(_vm._s(order.payment_status.description))
-                    ])
-                  : _vm._e()
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                order.address
-                  ? _c("span", [
-                      _vm._v(
-                        "\n            " +
-                          _vm._s(order.address.street) +
-                          ", " +
-                          _vm._s(order.address.interior_number) +
-                          ". " +
-                          _vm._s(order.address.city) +
-                          ", " +
-                          _vm._s(order.address.state.name) +
-                          " - " +
-                          _vm._s(order.address.country.name) +
-                          "\n          "
-                      )
-                    ])
-                  : _vm._e()
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                order.processed_by_user_id
-                  ? _c("span", [_vm._v(_vm._s(order.processor.info.full_name))])
-                  : _vm._e()
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _c(
-                  "a",
-                  {
-                    staticClass: "btn btn-sm btn-light",
-                    attrs: { href: order.show_route }
-                  },
-                  [_vm._v(_vm._s(_vm.tbody.seeOrder))]
-                )
+              _c("div", { staticClass: "bottom" }, [
+                _c("div", { staticClass: "user" }, [
+                  _c("small", [_vm._v(_vm._s(_vm.messages.user))]),
+                  _vm._v(" "),
+                  _c("a", { attrs: { href: "#" } }, [
+                    _vm._v(_vm._s(order.user.contact.whatsapp))
+                  ])
+                ])
               ])
-            ]
-          )
-        })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-4 right" }, [
+              _c("div", { staticClass: "top" }, [
+                _c("div", { staticClass: "processed-by" }, [
+                  _c("small", [_vm._v(_vm._s(_vm.messages.processedBy))]),
+                  _vm._v(" "),
+                  order.processed_by_user_id
+                    ? _c("span", [
+                        _vm._v(_vm._s(order.processor.info.full_name))
+                      ])
+                    : _vm._e()
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "bottom" }, [
+                _c("div", { staticClass: "actions" }, [
+                  _c("nav", [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-sm btn-dark",
+                        attrs: { href: order.show_route }
+                      },
+                      [_vm._v(_vm._s(_vm.messages.seeOrder))]
+                    )
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ]
       )
-    ])
-  ])
+    })
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

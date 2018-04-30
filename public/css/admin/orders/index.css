@@ -13838,10 +13838,10 @@ input[type="submit"].btn i,
 
 .sub-header .menu nav span,
 .sub-header .menu nav a {
-  padding: 0.25rem;
+  padding: 0.25rem 1rem;
+  text-transform: uppercase;
+  font-size: 0.875rem;
   display: inline-block;
-  text-align: center;
-  min-width: 180px;
 }
 
 .sub-header .menu nav span:hover,
@@ -13950,6 +13950,112 @@ input[type="submit"].btn i,
 #admin-orders-index {
   padding-bottom: 3rem;
   padding-top: 3rem;
+}
+
+.order {
+  margin-bottom: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: white;
+}
+
+.order a:not(.btn) {
+  color: #495057;
+}
+
+.order a:not(.btn):hover {
+  text-decoration: none;
+}
+
+.order:hover {
+  -webkit-box-shadow: 0px 3px 3px 0px rgba(49, 50, 51, 0.15);
+  box-shadow: 0px 3px 3px 0px rgba(49, 50, 51, 0.15);
+}
+
+.order .left {
+  border-right: 1px solid #f8f9fa;
+}
+
+.order .left small {
+  border-bottom: 1px solid #f8f9fa;
+  color: #6c757d;
+  display: block;
+}
+
+.order .left .top > a {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.order .left .id {
+  text-align: center;
+}
+
+.order .left .id span {
+  font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-weight: 700;
+  font-size: 1.75rem;
+}
+
+.order .left .status {
+  min-width: 112px;
+}
+
+.order .left .status span {
+  font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-weight: 700;
+}
+
+.order .left .id > span,
+.order .left .status > span,
+.order .left .payment-status > span,
+.order .left .payment-type > span {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 50px;
+}
+
+.order .right .top {
+  min-height: 78px;
+}
+
+.order .right .bottom .actions {
+  padding: 0.25rem 0.5rem;
+}
+
+.order .left small,
+.order .right small {
+  padding: 0.25rem 0.5rem;
+  border-bottom: 1px solid #f8f9fa;
+  color: #6c757d;
+  display: block;
+}
+
+.order .left .top > a > div > span,
+.order .left .top > div > span,
+.order .left .top > div > a,
+.order .left .bottom > a > div > span,
+.order .left .bottom > div > span,
+.order .left .bottom > div > a,
+.order .right .top > a > div > span,
+.order .right .top > div > span,
+.order .right .top > div > a,
+.order .right .bottom > a > div > span,
+.order .right .bottom > div > span,
+.order .right .bottom > div > a {
+  padding: 0.25rem 0.5rem;
 }
 
 /*

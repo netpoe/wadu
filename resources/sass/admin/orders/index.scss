@@ -54,6 +54,106 @@
   }
 }
 
+$order-padding: get-spacer(1);
+.order {
+  margin-bottom: get-spacer(2);
+  border-radius: $border-radius;
+  background-color: white;
+  a:not(.btn) {
+    color: $gray-700;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  &:hover {
+    @include box-shadow-default;
+  }
+  .left {
+    border-right: 1px solid $gray-100;
+    small {
+      border-bottom: 1px solid $gray-100;
+      color: $text-muted;
+      display: block;
+    }
+    .top {
+      > a {
+        @include flex-row;
+      }
+    }
+    .bottom {
+
+    }
+
+    .id {
+      text-align: center;
+      span {
+        @include bold;
+        font-size: $h3-font-size;
+      }
+    }
+
+    .status {
+      min-width: 112px;
+      span {
+        @include bold;
+      }
+    }
+
+    .id,
+    .status,
+    .payment-status,
+    .payment-type {
+      > span {
+        @include flex-column-center;
+        min-height: 50px;
+      }
+    }
+  }
+  .right {
+    .top {
+      min-height: 78px;
+    }
+    .bottom {
+      .actions {
+        padding: get-spacer(1) get-spacer(2);
+      }
+    }
+    .user {
+      > span {
+
+      }
+    }
+    .user {
+      span {
+
+      }
+    }
+  }
+
+  .left,
+  .right {
+    small {
+      padding: get-spacer(1) get-spacer(2);
+      border-bottom: 1px solid $gray-100;
+      color: $text-muted;
+      display: block;
+    }
+    .top,
+    .bottom {
+      > a > div > span,
+      > div > span,
+      > div > a {
+        padding: get-spacer(1) get-spacer(2);
+      }
+    }
+    .id,
+    .status,
+    .user {
+      // padding: $order-padding;
+    }
+  }
+}
+
 /*
   Media queries
 */
