@@ -6,5 +6,6 @@
     "/css/front/orders/shipping.css": "/css/front/orders/shipping.css",
     "/css/front/orders/checkout.css": "/css/front/orders/checkout.css",
     "/js/admin/orders/show.js": "/js/admin/orders/show.js",
-    "/js/front/menu/index.js": "/js/front/menu/index.js"
+    "/js/front/menu/index.js": "/js/front/menu/index.js",
+    "/css/front/orders/pending.css": "/css/front/orders/pending.css"
 }

@@ -40,6 +40,8 @@ class OrdersController extends Controller
 
     public function checkout(Order $order)
     {
+        // TODO if order is being processed, status 2, it cannot be edited anymore
+
         $orderProducts = $order->products->sortByDesc(function($orderProduct, $key){
             return $orderProduct->product->product_category_id;
         });

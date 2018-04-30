@@ -1,31 +1,31 @@
-@extends('layouts.admin')
+@extends('layouts.front')
 
 @push('head-links')
-<link rel="stylesheet" href="{{ asset('css/admin/orders/new.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/front/orders/pending.css') }}">
+@endpush
+
+@push('header-left')
+  <span class="business-name">{{ $order->business->name }}</span>
 @endpush
 
 @section('content')
 
-<section class="section hero" id="front-orders-checkout">
-  <div class="container">
-    <h1>Todo listo</h1>
-    <p>Enviaremos tu pedido a:
-      {{ $order->address->street }}, {{ $order->address->interior_number }}.<br>
-      {{ $order->address->city }}, {{ $order->address->state->name }} - {{ $order->address->country->name }}<br>
-      CP: {{ $order->address->zip_code }}<br>
-      Referencias: {{ $order->address->references }}
-    </p>
-
-    <p>Con este medio de pago: {{ __($order->paymentType->description) }}</p>
-    <p>Status: {{ __($order->status->description) }}</p>
-
-    @foreach($order->products as $orderProduct)
-      <article class="product">
-        <h5>{{ $orderProduct->amount }} {{ $orderProduct->product->info->name }}</h5>
-        <p>{{ $orderProduct->product->info->description }}</p>
-        <small>{{ $orderProduct->getPrice() }}</small>
+<section class="section hero" id="front-orders-pending">
+  <div class="checkmark-title">
+    <div class="container">
+      <span class="checkmark"><i class="icon-checkmark-circle"></i></span>
+      <h1>{{ __('Your order is in progress!') }}</h1>
+    </div>
+  </div>
+  <div class="details">
+    <div class="container">
+      <article class="card">
+        <div class="card-body">
+          <p>{{ __('Please have the total ready') }}: <strong>{{ $order->getTotal()->toCurrency($order->defaultCurrencySymbol) }}</strong>, in <span class="text-uppercase">{{ __($order->paymentType->description) }}</span> {{ __('when your order arrives at your location.') }}</p>
+          <a href="{{ route('front.orders.checkout', ['order' => $order->id]) }}" class="btn btn-block btn-secondary">{{ __('Review my order') }}</a>
+        </div>
       </article>
-    @endforeach
+    </div>
   </div>
 
 </section>

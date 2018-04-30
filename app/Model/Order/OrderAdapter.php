@@ -51,6 +51,8 @@ class OrderAdapter extends Order
 
     public function getShippingCost()
     {
+        // TODO, get shipping costs from business settings
+
         return new NumberUtil(18.00);
     }
 
