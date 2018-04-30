@@ -48,7 +48,7 @@ class ShippingController extends Controller
         ]);
 
         try {
-            event(new IndexOrdersEvent($order->business->getOrders()));
+            event(new IndexOrdersEvent($order));
             event(new ShowOrderEvent($order));
         } catch (\Exception $e) {}
 

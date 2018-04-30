@@ -86,7 +86,7 @@ class OrdersController extends Controller
         ]);
 
         try {
-            event(new IndexOrdersEvent($order->business->getOrders()));
+            event(new IndexOrdersEvent($order));
             event(new ShowOrderEvent($order));
         } catch (\Exception $e) {}
 
@@ -118,7 +118,7 @@ class OrdersController extends Controller
         ]);
 
         try {
-            event(new IndexOrdersEvent($order->business->getOrders()));
+            event(new IndexOrdersEvent($order));
             event(new ShowOrderEvent($order));
         } catch (\Exception $e) {}
 

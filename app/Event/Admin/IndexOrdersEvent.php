@@ -16,16 +16,16 @@ class IndexOrdersEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets;
 
-    public $orders;
+    public $order;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Collection $orders)
+    public function __construct(Order $order)
     {
-        $this->orders = $orders;
+        $this->order = $order;
     }
 
     public function broadcastAs()
@@ -40,7 +40,7 @@ class IndexOrdersEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        $businessId = $this->orders->first()->business->id;
+        $businessId = $this->order->business->id;
 
         return new PrivateChannel("orders.$businessId");
     }
