@@ -11,6 +11,14 @@
     @stack('head-links')
   </head>
   <body>
+    @stack('body')
+
+    @include('components.admin-top-bar')
+
+    @include('components.admin-header')
+
+    @include('components.sub-header')
+
     <div class="site-wrapper" id="site-wrapper">
 
       <main class="site-content" role="main">

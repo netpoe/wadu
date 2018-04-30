@@ -1,0 +1,44 @@
+.sub-header {
+  @extend .header;
+  .sub-header-left,
+  .sub-header-center,
+  .sub-header-right {
+    min-height: $sub-header-height-control;
+    padding-bottom: 14px;
+    padding-top: 14px;
+    height: initial;
+  }
+  .page-title {
+    @include bold;
+    text-transform: uppercase;
+    font-size: $h3-font-size;
+  }
+  .sub-header-right {
+    nav {
+      > span,
+      > button,
+      > a {
+        margin-left: get-spacer(1);
+      }
+    }
+  }
+  .menu {
+    background-color: $gray-200;
+    nav {
+      @include flex-row;
+      span,
+      a {
+        padding: $input-btn-padding-y-sm;
+        display: inline-block;
+        text-align: center;
+        min-width: 180px;
+        &:hover,
+        &.active {
+          @include bold;
+          border-bottom: 3px solid $yellow;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

@@ -1,21 +1,28 @@
 @extends('layouts.admin')
 
 @push('head-links')
-<link rel="stylesheet" href="{{ asset('css/admin/orders/index.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/admin/orders/index.css') }}">
+@endpush
+
+@push('header-left')
+  <span class="business-name">{{ $business->name }}</span>
+@endpush
+
+@push('sub-header-left')
+  <h1 class="page-title">{{ __('Orders') }}</h1>
+@endpush
+
+@push('sub-header-menu')
+  <nav>
+    <span class="active">{{ __('All orders') }}</span>
+    <span>{{ __('Ready for processing') }}</span>
+  </nav>
 @endpush
 
 @section('content')
 
 <section class="section hero" id="admin-orders-index">
   <div class="container">
-    <h1>Órdenes</h1>
-    {{-- <h2>Mostrando órdenes listas para procesarse</h2> --}}
-    <span>Mostrar órdenes:</span>
-    <nav>
-      <a href="#" class="btn btn-sm btn-light">{{ __('All orders') }}</a>
-      <a href="#" class="btn btn-sm btn-light">{{ __('Ready for processing') }}</a>
-    </nav>
-
     <admin-orders-tr ref="adminOrdersTr"></admin-orders-tr>
   </div>
 </section>

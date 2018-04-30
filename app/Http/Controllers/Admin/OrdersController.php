@@ -32,10 +32,13 @@ class OrdersController extends Controller
 {
     public function index() {
 
-        $orders = Auth::user()->business->getOrders();
+        $business = Auth::user()->business;
+
+        $orders = $business->getOrders();
 
         return view('admin.orders.index', [
-            'orders' => $orders
+            'orders' => $orders,
+            'business' => $business,
         ]);
     }
 

@@ -19,33 +19,35 @@ mix.webpackConfig({
   }
 });
 
-mix.js('resources/js/admin/orders/index.js', 'public/js/admin/orders', {
+let js = [
+  {src: 'resources/js/admin/orders/index.js', dest: 'public/js/admin/orders'},
+  {src: 'resources/js/admin/orders/show.js', dest: 'public/js/admin/orders'},
+
+  {src: 'resources/js/front/menu/index.js', dest: 'public/js/front/menu'},
+];
+
+let css = [
+  {src: 'resources/sass/admin/orders/new.scss', dest: 'public/css/admin/orders'},
+  {src: 'resources/sass/admin/orders/index.scss', dest: 'public/css/admin/orders'},
+
+  {src: 'resources/sass/front/menu/index.scss', dest: 'public/css/front/menu'},
+  {src: 'resources/sass/front/orders/shipping.scss', dest: 'public/css/front/orders'},
+  {src: 'resources/sass/front/orders/checkout.scss', dest: 'public/css/front/orders'},
+  {src: 'resources/sass/front/orders/pending.scss', dest: 'public/css/front/orders'},
+];
+
+js.forEach(item => {
+  mix.js(item.src, item.dest, {
     includePaths: ['node_modules', 'resources']
-  })
-  .js('resources/js/admin/orders/show.js', 'public/js/admin/orders', {
+  });
+});
+
+css.forEach(item => {
+  mix.sass(item.src, item.dest, {
     includePaths: ['node_modules', 'resources']
-  })
-  .js('resources/js/front/menu/index.js', 'public/js/front/menu', {
-    includePaths: ['node_modules', 'resources']
-  })
-  .sass('resources/sass/admin/orders/new.scss', 'public/css/admin/orders', {
-    includePaths: ['node_modules', 'resources']
-  })
-  .sass('resources/sass/admin/orders/index.scss', 'public/css/admin/orders', {
-    includePaths: ['node_modules', 'resources']
-  })
-  .sass('resources/sass/front/menu/index.scss', 'public/css/front/menu', {
-    includePaths: ['node_modules', 'resources']
-  })
-  .sass('resources/sass/front/orders/shipping.scss', 'public/css/front/orders', {
-    includePaths: ['node_modules', 'resources']
-  })
-  .sass('resources/sass/front/orders/checkout.scss', 'public/css/front/orders', {
-    includePaths: ['node_modules', 'resources']
-  })
-  .sass('resources/sass/front/orders/pending.scss', 'public/css/front/orders', {
-    includePaths: ['node_modules', 'resources']
-  })
-  .browserSync({
+  });
+});
+
+mix.browserSync({
     proxy: 'localhost:8000'
   });
