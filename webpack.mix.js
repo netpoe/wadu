@@ -29,6 +29,7 @@ let js = [
 let css = [
   {src: 'resources/sass/admin/orders/new.scss', dest: 'public/css/admin/orders'},
   {src: 'resources/sass/admin/orders/index.scss', dest: 'public/css/admin/orders'},
+  {src: 'resources/sass/admin/menu/edit.scss', dest: 'public/css/admin/menu'},
 
   {src: 'resources/sass/front/menu/index.scss', dest: 'public/css/front/menu'},
   {src: 'resources/sass/front/orders/shipping.scss', dest: 'public/css/front/orders'},

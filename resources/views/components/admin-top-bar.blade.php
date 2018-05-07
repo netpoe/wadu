@@ -12,18 +12,13 @@
           </ul>
         </div>
         <div class="top-menu-item">
-          <div><a href="{{ route('admin.menu.index') }}">{{ __('Menu') }}</a></div>
-          <ul class="top-menu-dropdown">
+          <div><a href="{{ route('admin.menu.edit') }}">{{ __('Products') }}</a></div>
+          {{-- <ul class="top-menu-dropdown">
             <li class="top-menu-sub-item"><a href="{{ route('admin.menu.edit') }}">{{ __('Products') }}</a></li>
-          </ul>
-        </div>
-        <div class="top-menu-item">
-          <div><a href="{{ route('admin.menu.index') }}">{{ __('Menu') }}</a></div>
-          <ul class="top-menu-dropdown">
-            <li class="top-menu-sub-item"><a href="{{ route('admin.menu.edit') }}">{{ __('Products') }}</a></li>
-          </ul>
+          </ul> --}}
         </div>
       </div>
+
       <div class="col top-menu-right">
         <div class="top-menu-item">
           <div><a href="#">{{ __('Settings') }}</a></div>

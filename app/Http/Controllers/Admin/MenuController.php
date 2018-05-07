@@ -19,9 +19,12 @@ class MenuController extends Controller
 
         $products = $business->products->sortByDesc('id');
 
-        $productCategories = $business->productCategories;
+        $productCategories = $business->productCategories->sortBy(function($category){
+            return $category->value;
+        });
 
         return view('admin.menu.edit', [
+            'business' => $business,
             'products' => $products,
             'productCategories' => $productCategories
         ]);

@@ -1,0 +1,37 @@
+.card {
+  margin-bottom: get-spacer(3);
+  word-break: break-all;
+  .card-header {
+    @include flex-row-space-between;
+    @include normalize-text;
+    background-color: white;
+    .title, .action {
+      @include flex-column-center;
+      min-height: 35px;
+    }
+  }
+}
+
+.card-body {
+  &.card-body-scroll {
+    max-height: 180px;
+    overflow: scroll;
+  }
+}
+
+.card-body-title {
+  @include bold;
+  border-bottom: 1px solid $gray-100;
+  padding: get-spacer(2);
+  display: block;
+}
+
+.card-title-wrapper {
+  @include flex-row-space-between;
+  border-bottom: 1px solid $gray-100;
+  padding: get-spacer(2);
+  .card-body-title {
+    border-bottom: none;
+    padding: 0;
+  }
+}
