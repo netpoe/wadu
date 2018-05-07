@@ -33,8 +33,18 @@
 @import "node_modules/ebm/modules/ebm-header";
 @import "node_modules/ebm/elements/ebm-alerts";
 
+@import "resources/sass/common/mixins";
+
+@import "resources/sass/common/buttons";
+@import "resources/sass/common/header";
+@import "resources/sass/common/sub-header";
+@import "resources/sass/common/top-menu";
+
 #admin-orders-new {
   @include flex-column-center;
+  &.hero {
+    min-height: 80vh;
+  }
 }
 
 /*

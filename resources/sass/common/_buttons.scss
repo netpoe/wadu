@@ -3,6 +3,7 @@ button.btn,
 input[type="submit"].btn,
 .btn {
   @include light;
+  border-radius: $border-radius-sm;
   text-transform: uppercase;
   font-size: $font-size-sm;
   letter-spacing: 0.8px;

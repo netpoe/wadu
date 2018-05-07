@@ -46,7 +46,10 @@ class OrdersController extends Controller
 
         $form->setFields();
 
+        $business = Auth::user()->business;
+
         return view('admin.orders.new', [
+            'business' => $business,
             'form' => $form,
         ]);
     }
@@ -113,7 +116,8 @@ class OrdersController extends Controller
             $form->getValidationMessages());
 
         if ($validator->fails()) {
-            return redirect('admin.orders.new')
+            return redirect()
+                    ->back()
                     ->withErrors($validator)
                     ->withInput();
         }

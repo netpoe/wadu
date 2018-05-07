@@ -29,4 +29,18 @@ class NewOrderForm extends AbstractBaseForm
 
         return $this;
     }
+
+    public function getValidationRules()
+    {
+        return [
+            'whatsapp' => 'required|string|regex:/^\+?[\d ]{8,20}+$/i'
+        ];
+    }
+
+    public function getValidationMessages()
+    {
+        return [
+            'whatsapp.regex' => 'Whatsapp must be a number between 6 and 14 digits with an optional "+" leading sign'
+        ];
+    }
 }
