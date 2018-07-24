@@ -20,7 +20,6 @@ html {
 
 article,
 aside,
-dialog,
 figcaption,
 figure,
 footer,
@@ -171,7 +170,7 @@ pre,
 code,
 kbd,
 samp {
-  font-family: monospace, monospace;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 1em;
 }
 
@@ -193,6 +192,7 @@ img {
 
 svg:not(:root) {
   overflow: hidden;
+  vertical-align: middle;
 }
 
 table {
@@ -421,6 +421,22 @@ template {
   .table-bordered td {
     border: 1px solid #dee2e6 !important;
   }
+
+  .table-dark {
+    color: inherit;
+  }
+
+  .table-dark th,
+  .table-dark td,
+  .table-dark thead th,
+  .table-dark tbody + tbody {
+    border-color: #dee2e6;
+  }
+
+  .table .thead-dark th {
+    color: inherit;
+    border-color: #dee2e6;
+  }
 }
 
 h1,
@@ -587,7 +603,7 @@ mark,
 }
 
 /*!
- * Bootstrap Grid v4.1.0 (https://getbootstrap.com/)
+ * Bootstrap Grid v4.1.2 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -3445,6 +3461,13 @@ select.form-control-lg:not([size]):not([multiple]),
   display: block;
 }
 
+.was-validated .form-control-file:valid ~ .valid-feedback,
+.was-validated .form-control-file:valid ~ .valid-tooltip,
+.form-control-file.is-valid ~ .valid-feedback,
+.form-control-file.is-valid ~ .valid-tooltip {
+  display: block;
+}
+
 .was-validated .form-check-input:valid ~ .form-check-label,
 .form-check-input.is-valid ~ .form-check-label {
   color: #28a745;
@@ -3559,6 +3582,13 @@ select.form-control-lg:not([size]):not([multiple]),
 .custom-select:invalid ~ .invalid-tooltip,
 .custom-select.is-invalid ~ .invalid-feedback,
 .custom-select.is-invalid ~ .invalid-tooltip {
+  display: block;
+}
+
+.was-validated .form-control-file:invalid ~ .invalid-feedback,
+.was-validated .form-control-file:invalid ~ .invalid-tooltip,
+.form-control-file.is-invalid ~ .invalid-feedback,
+.form-control-file.is-invalid ~ .invalid-tooltip {
   display: block;
 }
 
@@ -3747,12 +3777,6 @@ select.form-control-lg:not([size]):not([multiple]),
   margin-bottom: 0;
 }
 
-.input-group > .form-control:focus,
-.input-group > .custom-select:focus,
-.input-group > .custom-file:focus {
-  z-index: 3;
-}
-
 .input-group > .form-control + .form-control,
 .input-group > .form-control + .custom-select,
 .input-group > .form-control + .custom-file,
@@ -3763,6 +3787,12 @@ select.form-control-lg:not([size]):not([multiple]),
 .input-group > .custom-file + .custom-select,
 .input-group > .custom-file + .custom-file {
   margin-left: -1px;
+}
+
+.input-group > .form-control:focus,
+.input-group > .custom-select:focus,
+.input-group > .custom-file .custom-file-input:focus ~ .custom-file-label {
+  z-index: 3;
 }
 
 .input-group > .form-control:not(:last-child),
@@ -3792,8 +3822,7 @@ select.form-control-lg:not([size]):not([multiple]),
   border-bottom-right-radius: 0;
 }
 
-.input-group > .custom-file:not(:first-child) .custom-file-label,
-.input-group > .custom-file:not(:first-child) .custom-file-label::after {
+.input-group > .custom-file:not(:first-child) .custom-file-label {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }

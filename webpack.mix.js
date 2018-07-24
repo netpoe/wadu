@@ -32,6 +32,7 @@ let css = [
   {src: 'resources/sass/admin/menu/edit.scss', dest: 'public/css/admin/menu'},
 
   {src: 'resources/sass/front/menu/index.scss', dest: 'public/css/front/menu'},
+  {src: 'resources/sass/front/menu/preview.scss', dest: 'public/css/front/menu'},
   {src: 'resources/sass/front/orders/shipping.scss', dest: 'public/css/front/orders'},
   {src: 'resources/sass/front/orders/checkout.scss', dest: 'public/css/front/orders'},
   {src: 'resources/sass/front/orders/pending.scss', dest: 'public/css/front/orders'},

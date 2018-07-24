@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('/logout', 'Auth\LoginController@logout')->name('logout' );
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -72,6 +73,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin'], function(){
  */
 Route::group(['namespace' => 'Front'], function(){
     Route::get('/menu/{businessSlug}/order/{order}', 'MenuController@index')->name('front.menu.index');
+    Route::get('/menu/preview', 'MenuController@preview')->name('front.menu.preview');
 });
 
 /**

@@ -22,6 +22,12 @@ class BusinessAdapter extends Business
         return $order;
     }
 
+    public function getOrder(Order $order){
+        return $this->orders()->where([
+            'id' => $order->id
+        ])->get();
+    }
+
     public function getOrders()
     {
         $orders = $this
